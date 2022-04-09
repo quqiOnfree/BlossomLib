@@ -14,17 +14,10 @@
   "license": "MIT",
   "icon": "assets/lib/icon.png",
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "dev.codedsakura.blossom.lib.BlossomLib"
-    ]
-  },
-  "mixins": [
-    "lib.mixins.json"
-  ],
+  "entrypoints": {},
+  "mixins": [],
   "depends": {
     "fabricloader": ">=0.13.3",
-    "fabric": "*",
-    "minecraft": "1.18.2"
+    "minecraft": ">=1.18.2"
   }
 }
