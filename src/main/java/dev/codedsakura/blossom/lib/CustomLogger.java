@@ -2,6 +2,7 @@ package dev.codedsakura.blossom.lib;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.Appender;
+import org.apache.logging.log4j.core.Filter;
 import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.Configuration;
@@ -13,7 +14,6 @@ import static org.apache.logging.log4j.core.config.builder.api.ConfigurationBuil
 
 public class CustomLogger {
     private static final LoggerContext CONTEXT;
-    public static final String FILENAME = "logs/blossom.log";
 
     static {
         Configurator.reconfigure();
@@ -22,7 +22,11 @@ public class CustomLogger {
 
         builder.add(
                 builder.newAppender("fileLog", "File")
-                        .addAttribute("fileName", FILENAME)
+                        .addAttribute("fileName", BlossomLib.CONFIG.fileLogPath)
+                        .addAttribute("append", BlossomLib.CONFIG.fileLogAppend)
+                        .add(builder
+                                .newFilter("ThresholdFilter", Filter.Result.ACCEPT, Filter.Result.DENY)
+                                .addAttribute("level", BlossomLib.CONFIG.fileLogLevel))
                         .add(builder
                                 .newLayout("PatternLayout")
                                 .addAttribute("pattern", "[%d{yyyy-MM-dd HH:mm:ss}] [%t/%5level] (%logger{1}): %msg%n%throwable"))
@@ -38,7 +42,9 @@ public class CustomLogger {
 
         Configuration configuration = CONTEXT.getConfiguration();
         configuration.addAppender(sysOut);
-        configuration.getRootLogger().addAppender(sysOut, Level.INFO, null);
+        configuration.getRootLogger().addAppender(sysOut, Level.getLevel(BlossomLib.CONFIG.consoleLogLevel), null);
+
+        System.out.println(builder.toXmlConfiguration());
     }
 
     /**
