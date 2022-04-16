@@ -6,10 +6,14 @@ import org.apache.logging.log4j.core.Logger;
 
 
 class BlossomLibConfig {
-    String fileLogLevel = Level.WARN.name();
-    String consoleLogLevel = Level.INFO.name();
-    String fileLogPath = "logs/BlossomMods.log";
-    boolean fileLogAppend = true;
+    LoggingConfig logging = new LoggingConfig();
+
+    static class LoggingConfig {
+        String fileLogLevel = Level.WARN.name();
+        String consoleLogLevel = Level.INFO.name();
+        String fileLogPath = "logs/BlossomMods.log";
+        boolean fileLogAppend = true;
+    }
 }
 
 public class BlossomLib implements ModInitializer {

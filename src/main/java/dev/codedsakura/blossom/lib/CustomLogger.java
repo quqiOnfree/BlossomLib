@@ -22,11 +22,11 @@ public class CustomLogger {
 
         builder.add(
                 builder.newAppender("fileLog", "File")
-                        .addAttribute("fileName", BlossomLib.CONFIG.fileLogPath)
-                        .addAttribute("append", BlossomLib.CONFIG.fileLogAppend)
+                        .addAttribute("fileName", BlossomLib.CONFIG.logging.fileLogPath)
+                        .addAttribute("append", BlossomLib.CONFIG.logging.fileLogAppend)
                         .add(builder
                                 .newFilter("ThresholdFilter", Filter.Result.ACCEPT, Filter.Result.DENY)
-                                .addAttribute("level", BlossomLib.CONFIG.fileLogLevel))
+                                .addAttribute("level", BlossomLib.CONFIG.logging.fileLogLevel))
                         .add(builder
                                 .newLayout("PatternLayout")
                                 .addAttribute("pattern", "[%d{yyyy-MM-dd HH:mm:ss}] [%t/%5level] (%logger{1}): %msg%n%throwable"))
@@ -42,7 +42,7 @@ public class CustomLogger {
 
         Configuration configuration = CONTEXT.getConfiguration();
         configuration.addAppender(sysOut);
-        configuration.getRootLogger().addAppender(sysOut, Level.getLevel(BlossomLib.CONFIG.consoleLogLevel), null);
+        configuration.getRootLogger().addAppender(sysOut, Level.getLevel(BlossomLib.CONFIG.logging.consoleLogLevel), null);
 
         System.out.println(builder.toXmlConfiguration());
     }
