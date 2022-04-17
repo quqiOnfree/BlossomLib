@@ -144,6 +144,14 @@ public class TeleportUtils {
 
         boolean titleMessageEnabled = true;
 
+        boolean fovEffectEnabled = false;
+
+        ParticleAnimation particleAnimation = ParticleAnimation.OFF;
+
+        enum ParticleAnimation {
+            OFF
+        }
+
         TeleportConfig mergeWithDefaults() {
             TeleportConfig defaultConf = BlossomLib.CONFIG.baseTeleportation;
 

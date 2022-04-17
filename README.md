@@ -21,6 +21,8 @@ for the file output
 `bossBar`: [BossBar](#bossbar) - settings altering the boss bar   
 `actionBarMessageEnabled`: boolean - whether to show a message in the action bar when counting down  
 `titleMessageEnabled`: boolean - whether to show a title message when counting down
+`fovEffectEnabled`: boolean - whether to make a FOV (field of view) animation when teleporting
+`particleAnimation`: [ParticleAnimation]() - which particle animation to use
 
 ### BossBar
 
