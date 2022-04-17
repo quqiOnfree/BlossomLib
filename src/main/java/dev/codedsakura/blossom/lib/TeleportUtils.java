@@ -51,14 +51,11 @@ public class TeleportUtils {
         TASKS.add(new CounterRunnable(standTicks, who.getUuid()) {
             @Override
             void run() {
-                if (counter == 0) {
+                if (counter <= 0) {
                     LOGGER.debug("genericCountdown for {} has ended", player);
                     if (finalCommandBossBar != null) {
                         finalCommandBossBar.removePlayer(who);
                         server.getBossBarManager().remove(finalCommandBossBar);
-                    }
-                    if (config.actionBarMessageEnabled) {
-                        who.sendMessage(new TranslatableText(""), true);
                     }
                     if (config.titleMessageEnabled) {
                         new Timer().schedule(new TimerTask() {
@@ -68,7 +65,14 @@ public class TeleportUtils {
                             }
                         }, 500);
                     }
-                    onDone.run();
+
+                    if (counter == 0) {
+                        if (config.actionBarMessageEnabled) {
+                            who.sendMessage(new TranslatableText(""), true);
+                        }
+                        onDone.run();
+                    }
+
                     counter = -1;
                     return;
                 }
@@ -106,6 +110,10 @@ public class TeleportUtils {
 
     public static boolean hasCountdowns(UUID player) {
         return TASKS.stream().anyMatch(task -> task.player.compareTo(player) == 0);
+    }
+
+    static void clearAll() {
+        TASKS.forEach(task -> task.counter = -1);
     }
 
     private static abstract class CounterRunnable {

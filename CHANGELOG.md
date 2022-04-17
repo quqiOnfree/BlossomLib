@@ -6,6 +6,7 @@
 * Add TeleportUtils utility class
 * Add README.md to document config shape
 * Add Fabric API
+* Add commands for reloading config, clearing countdown, debug
 
 # 0.0.1-alpha1+1.18.2
 
