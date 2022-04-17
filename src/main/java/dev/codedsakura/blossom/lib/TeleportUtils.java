@@ -25,7 +25,7 @@ public class TeleportUtils {
     private static final ArrayList<CounterRunnable> TASKS = new ArrayList<>();
     private static final String IDENTIFIER = "blossom:standstill";
 
-    public static void tick() {
+    static void tick() {
         TASKS.forEach(CounterRunnable::run);
         TASKS.removeIf(CounterRunnable::shouldRemove);
     }

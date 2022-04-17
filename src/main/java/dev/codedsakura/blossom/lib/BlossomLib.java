@@ -1,6 +1,7 @@
 package dev.codedsakura.blossom.lib;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.Logger;
 
@@ -24,5 +25,6 @@ public class BlossomLib implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        ServerTickEvents.END_SERVER_TICK.register(_server -> TeleportUtils.tick());
     }
 }

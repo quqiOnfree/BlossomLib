@@ -1,5 +1,10 @@
 # BlossomLib
 
+Dependencies:
+
+* [Fabric API]()
+* [fabric-permissions-api]() / [Luckperms]() / etc. (Optional)
+
 ## Config
 
 `config/BlossomMods/BlossomLib.json`

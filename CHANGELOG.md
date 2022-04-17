@@ -5,6 +5,7 @@
 * Add CHANGELOG.md
 * Add TeleportUtils utility class
 * Add README.md to document config shape
+* Add Fabric API
 
 # 0.0.1-alpha1+1.18.2
 
