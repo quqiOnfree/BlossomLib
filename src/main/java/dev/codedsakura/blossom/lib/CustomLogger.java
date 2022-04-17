@@ -43,8 +43,6 @@ public class CustomLogger {
         Configuration configuration = CONTEXT.getConfiguration();
         configuration.addAppender(sysOut);
         configuration.getRootLogger().addAppender(sysOut, Level.getLevel(BlossomLib.CONFIG.logging.consoleLogLevel), null);
-
-        System.out.println(builder.toXmlConfiguration());
     }
 
     /**
