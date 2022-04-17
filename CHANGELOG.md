@@ -4,6 +4,7 @@
 * Update logger to use the config
 * Add CHANGELOG.md
 * Add TeleportUtils utility class
+* Add README.md to document config shape
 
 # 0.0.1-alpha1+1.18.2
 
