@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.codedsakura.blossom.lib.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "ServerTickMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

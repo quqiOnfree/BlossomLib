@@ -14,6 +14,8 @@ class BlossomLibConfig {
         String fileLogPath = "logs/BlossomMods.log";
         boolean fileLogAppend = true;
     }
+
+    TeleportUtils.TeleportConfig baseTeleportation = new TeleportUtils.TeleportConfig(true);
 }
 
 public class BlossomLib implements ModInitializer {

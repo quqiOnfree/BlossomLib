@@ -19,7 +19,9 @@
       "dev.codedsakura.blossom.lib.BlossomLib"
     ]
   },
-  "mixins": [],
+  "mixins": [
+    "BlossomLib.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.13.3",
     "minecraft": "1.18.x"

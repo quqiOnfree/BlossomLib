@@ -3,6 +3,7 @@
 * Add a config
 * Update logger to use the config
 * Add CHANGELOG.md
+* Add TeleportUtils utility class
 
 # 0.0.1-alpha1+1.18.2
 
