@@ -23,6 +23,16 @@ class BlossomLibConfig {
     }
 
     TeleportUtils.TeleportConfig baseTeleportation = new TeleportUtils.TeleportConfig(true);
+
+    Colors colors = new Colors();
+
+    static class Colors {
+        String base = "light_purple";
+        String error = "red";
+        String success = "green";
+        String variable = "gold";
+        String player = "aqua";
+    }
 }
 
 public class BlossomLib implements ModInitializer {
