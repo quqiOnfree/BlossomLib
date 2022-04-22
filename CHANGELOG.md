@@ -7,6 +7,7 @@
 * Add README.md to document config shape
 * Add Fabric API
 * Add commands for reloading config, clearing countdown, debug
+* Add Server Translations API
 
 # 0.0.1-alpha1+1.18.2
 

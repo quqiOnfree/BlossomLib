@@ -11,6 +11,7 @@ group = project.maven_group
 
 repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url "https://maven.nucleoid.xyz" }
 }
 
 dependencies {
@@ -20,6 +21,8 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "me.lucko:fabric-permissions-api:${project.fpa_version}"
+
+    modImplementation(include("fr.catcore:server-translations-api:${project.server_translations_version}"))
 }
 
 processResources {
