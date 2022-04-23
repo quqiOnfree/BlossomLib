@@ -1,3 +1,7 @@
+# 0.0.1-beta1+1.18.2
+
+* Add teleport helper to TeleportUtils
+
 # 0.0.1-alpha2+1.18.2
 
 * Add a config
@@ -10,7 +14,7 @@
 * Add Server Translations API
 * Update config
 * Update TeleportUtils to have translations
-* Separate TeleportConfig into it's own file
+* Separate TeleportConfig into its own file
 
 # 0.0.1-alpha1+1.18.2
 

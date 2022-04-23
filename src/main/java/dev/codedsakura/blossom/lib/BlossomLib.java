@@ -5,6 +5,9 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.argument.RotationArgumentType;
+import net.minecraft.command.argument.Vec3ArgumentType;
+import net.minecraft.util.math.Vec2f;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.Logger;
 
@@ -75,6 +78,25 @@ public class BlossomLib implements ModInitializer {
                                                             () -> LOGGER.info("debug countdown done")
                                                     );
                                                     return 1;
-                                                }))))));
+                                                })))
+                                .then(literal("teleport")
+                                        .then(argument("standStill", IntegerArgumentType.integer(0))
+                                                .then(argument("pos", Vec3ArgumentType.vec3(true))
+                                                        .then(argument("rot", RotationArgumentType.rotation())
+                                                                .executes(ctx -> {
+                                                                    Vec2f rot = RotationArgumentType.getRotation(ctx, "rot")
+                                                                            .toAbsoluteRotation(ctx.getSource());
+                                                                    TeleportUtils.teleport(
+                                                                            null,
+                                                                            IntegerArgumentType.getInteger(ctx, "standStill"),
+                                                                            ctx.getSource().getPlayer(),
+                                                                            new TeleportUtils.TeleportDestination(
+                                                                                    ctx.getSource().getWorld(),
+                                                                                    Vec3ArgumentType.getVec3(ctx, "pos"),
+                                                                                    rot.y, rot.x
+                                                                            )
+                                                                    );
+                                                                    return 1;
+                                                                }))))))));
     }
 }

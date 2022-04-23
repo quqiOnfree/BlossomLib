@@ -2,11 +2,13 @@ package dev.codedsakura.blossom.lib;
 
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.CommandBossBar;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.s2c.play.SubtitleS2CPacket;
 import net.minecraft.network.packet.s2c.play.TitleFadeS2CPacket;
 import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TextColor;
 import net.minecraft.text.TranslatableText;
@@ -154,6 +156,45 @@ public class TeleportUtils {
 
         boolean shouldRemove() {
             return counter < 0;
+        }
+    }
+
+
+    public static void teleport(@Nullable TeleportConfig customConfig, double standStillTime, ServerPlayerEntity who, TeleportDestination where) {
+        teleport(customConfig, standStillTime, who, () -> where);
+    }
+
+    public static void teleport(@Nullable TeleportConfig customConfig, double standStillTime, ServerPlayerEntity who, GetDestination getWhere) {
+        genericCountdown(customConfig, standStillTime, who, () -> {
+            TeleportDestination where = getWhere.get();
+            who.teleport(where.world, where.x, where.y, where.z, where.yaw, where.pitch);
+        });
+    }
+
+    interface GetDestination {
+        TeleportDestination get();
+    }
+
+    public static class TeleportDestination {
+        final public ServerWorld world;
+        final public double x, y, z;
+        final public float yaw, pitch;
+
+        public TeleportDestination(ServerWorld world, Vec3d pos, float yaw, float pitch) {
+            this(world, pos.x, pos.y, pos.z, yaw, pitch);
+        }
+
+        public TeleportDestination(PlayerEntity player) {
+            this((ServerWorld) player.world, player.getPos(), player.getYaw(), player.getPitch());
+        }
+
+        public TeleportDestination(ServerWorld world, double x, double y, double z, float yaw, float pitch) {
+            this.world = world;
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.yaw = yaw;
+            this.pitch = pitch;
         }
     }
 }
