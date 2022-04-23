@@ -24,5 +24,8 @@
     "fabricloader": ">=0.13.3",
     "fabric": "*",
     "minecraft": "1.18.x"
+  },
+  "suggests": {
+    "fabric-permissions-api-v0": "*"
   }
 }

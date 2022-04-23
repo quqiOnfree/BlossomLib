@@ -3,12 +3,14 @@
 Dependencies:
 
 * [Fabric API]()
-* [fabric-permissions-api]() / [Luckperms]() / etc. (Optional)
-* [server-translations-api]() (Embedded)
+* [fabric-permissions-api](https://github.com/lucko/fabric-permissions-api) / [Luckperms](https://luckperms.net/) /
+  etc. (Optional)
+* [server-translations-api](https://github.com/arthurbambou/Server-Translations) (Embedded)
 
 ## Config
 
-`config/BlossomMods/BlossomLib.json`
+This library's config file can be found at `config/BlossomMods/BlossomLib.json`, after running the server with
+the mod at least once.
 
 `logging`: [LoggingConfig](#loggingconfig) - settings to do with BlossomMods logging  
 `baseTeleportation`: [BaseTeleportationConfig](#baseteleportationconfig) - default teleportation settings
@@ -27,8 +29,8 @@ for the file output
 `bossBar`: [BossBar](#bossbar) - settings altering the boss bar  
 `titleMessage`: [TitleMessage](#titlemessage) - settings altering the title message  
 `actionBarMessageEnabled`: boolean - whether to show a message in the action bar when counting down  
-`fovEffectEnabled`: boolean - whether to make a FOV (field of view) animation when teleporting  
-`particleAnimation`: [ParticleAnimation]() - which particle animation to use
+~~`fovEffectEnabled`: boolean - whether to make a FOV (field of view) animation when teleporting~~  
+~~`particleAnimation`: [ParticleAnimation]() - which particle animation to use~~
 
 ### BossBar
 
@@ -52,8 +54,8 @@ appear in any order
 
 ## Translation keys
 
-only keys with available arguments are shown, to see full list, please
-see `src/main/resources/data/blossom/lang/en_us.json`
+only keys with available arguments are shown, for full list, please see
+[`src/main/resources/data/blossom/lang/en_us.json`](https://github.com/BlossomMods/BlossomLib/blob/main/src/main/resources/data/blossom/lang/en_us.json)
 
 - `blossom.countdown.boss_bar.name`: 1 argument - seconds remaining
 - `blossom.countdown.action_bar.counting`: 1 argument - seconds remaining
