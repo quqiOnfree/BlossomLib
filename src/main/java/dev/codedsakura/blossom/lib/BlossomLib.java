@@ -22,7 +22,7 @@ class BlossomLibConfig {
         boolean fileLogAppend = true;
     }
 
-    TeleportUtils.TeleportConfig baseTeleportation = new TeleportUtils.TeleportConfig(true);
+    TeleportConfig baseTeleportation = new TeleportConfig(true);
 
     Colors colors = new Colors();
 

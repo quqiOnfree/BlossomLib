@@ -1,0 +1,9 @@
+{
+  "blossom.countdown.boss_bar.name": "",
+  "blossom.countdown.action_bar.counting": "Stand still for %s more seconds",
+  "blossom.countdown.action_bar.done": "Teleporting!",
+  "blossom.countdown.title.counting.title": "Teleporting",
+  "blossom.countdown.title.counting.subtitle": "Please stand still for %s more seconds",
+  "blossom.countdown.title.done.title": "Teleporting...",
+  "blossom.countdown.title.done.subtitle": ""
+}

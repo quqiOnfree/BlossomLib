@@ -8,6 +8,9 @@
 * Add Fabric API
 * Add commands for reloading config, clearing countdown, debug
 * Add Server Translations API
+* Update config
+* Update TeleportUtils to have translations
+* Separate TeleportConfig into it's own file
 
 # 0.0.1-alpha1+1.18.2
 
