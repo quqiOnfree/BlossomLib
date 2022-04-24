@@ -57,13 +57,10 @@ public class TextUtils {
         return new TranslatableText(
                 key,
                 Arrays.stream(args).map(TextUtils::variable).toArray()
-        ).styled(style -> {
-            switch (t) {
-                case ERROR -> style.withColor(TextColor.parse(CONFIG.colors.error));
-                case WARN, INFO -> style.withColor(TextColor.parse(CONFIG.colors.base));
-                case SUCCESS -> style.withColor(TextColor.parse(CONFIG.colors.success));
-            }
-            return style;
+        ).styled(style -> switch (t) {
+            case ERROR -> style.withColor(TextColor.parse(CONFIG.colors.error));
+            case WARN, INFO -> style.withColor(TextColor.parse(CONFIG.colors.base));
+            case SUCCESS -> style.withColor(TextColor.parse(CONFIG.colors.success));
         });
     }
 
