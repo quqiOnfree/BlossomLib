@@ -1,6 +1,6 @@
 # 0.0.1-beta1+1.18.2
 
-* Add teleport helper to TeleportUtils
+* Add teleport and cooldown helper to TeleportUtils
 
 # 0.0.1-alpha2+1.18.2
 

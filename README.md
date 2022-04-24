@@ -1,6 +1,14 @@
 # BlossomLib
 
-Dependencies:
+BlossomLib is a Minecraft Fabric library mod build for the Blossom-series mods.
+
+## Table of contents
+
+- [Dependencies](#dependencies)
+- [Config](#config)
+- [Translation keys](#translation-keys)
+
+## Dependencies
 
 * [Fabric API]()
 * [fabric-permissions-api](https://github.com/lucko/fabric-permissions-api) / [Luckperms](https://luckperms.net/) /
@@ -13,7 +21,7 @@ This library's config file can be found at `config/BlossomMods/BlossomLib.json`,
 the mod at least once.
 
 `logging`: [LoggingConfig](#loggingconfig) - settings to do with BlossomMods logging  
-`baseTeleportation`: [BaseTeleportationConfig](#baseteleportationconfig) - default teleportation settings
+`baseTeleportation`: [TeleportationConfig](#teleportationconfig) - default teleportation settings
 
 ### LoggingConfig
 
@@ -24,7 +32,7 @@ for the file output
 `fileLogPath`: String - where to put the BlossomMods log file  
 `fileLogAppend`: boolean - whether to keep the old BlossomMods logs on server startup
 
-### BaseTeleportationConfig
+### TeleportationConfig
 
 `bossBar`: [BossBar](#bossbar) - settings altering the boss bar  
 `titleMessage`: [TitleMessage](#titlemessage) - settings altering the title message  
