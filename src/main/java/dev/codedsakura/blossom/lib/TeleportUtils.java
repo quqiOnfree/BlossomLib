@@ -16,14 +16,15 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static dev.codedsakura.blossom.lib.BlossomLib.CONFIG;
 import static dev.codedsakura.blossom.lib.BlossomLib.LOGGER;
 
 public class TeleportUtils {
     private static final ArrayList<CounterRunnable> TASKS = new ArrayList<>();
+    private static final HashMap<HashablePair<UUID, Class<?>>, Long> COOLDOWNS = new HashMap<>();
     private static final String IDENTIFIER = "blossom:standstill";
 
     static void tick() {
@@ -160,21 +161,59 @@ public class TeleportUtils {
     }
 
 
-    public static boolean teleport(@Nullable TeleportConfig customConfig, double standStillTime, ServerPlayerEntity who, TeleportDestination where) {
-        return teleport(customConfig, standStillTime, who, () -> where);
+    public static boolean teleport(@Nullable TeleportConfig customConfig, double standStillTime, ServerPlayerEntity who, GetDestination getWhere) {
+        return teleport(customConfig, standStillTime, 0, TeleportUtils.class, who, getWhere);
     }
 
-    public static boolean teleport(@Nullable TeleportConfig customConfig, double standStillTime, ServerPlayerEntity who, GetDestination getWhere) {
+    public static boolean teleport(@Nullable TeleportConfig customConfig, double standStillTime, long cooldownTime,
+                                   Class<?> cooldownClass, ServerPlayerEntity who, GetDestination getWhere) {
         if (hasCountdowns(who.getUuid())) {
             who.sendMessage(TextUtils.fTranslation("blossom.error.has-countdown", TextUtils.Type.ERROR), false);
             return false;
         }
+        HashablePair<UUID, Class<?>> pair = new HashablePair<>(who.getUuid(), cooldownClass);
+        if (COOLDOWNS.containsKey(pair)) {
+            long timeLeft = COOLDOWNS.get(pair) - new Date().getTime() / 1000;
+            if (timeLeft > 0) {
+                who.sendMessage(TextUtils.fTranslation("blossom.error.has-cooldown", TextUtils.Type.ERROR, timeLeft), false);
+                return false;
+            }
+        }
         genericCountdown(customConfig, standStillTime, who, () -> {
             TeleportDestination where = getWhere.get();
             who.teleport(where.world, where.x, where.y, where.z, where.yaw, where.pitch);
+            COOLDOWNS.put(pair, new Date().getTime() / 1000 + cooldownTime);
         });
         return true;
     }
+
+
+    public static void cancelCooldown(UUID player, Class<?> targetClass) {
+        HashablePair<UUID, Class<?>> key = new HashablePair<>(player, targetClass);
+        COOLDOWNS.remove(key);
+    }
+
+    public static void cancelCooldowns(UUID player) {
+        COOLDOWNS.keySet().removeIf(key -> key.getLeft().compareTo(player) == 0);
+    }
+
+    public static void cancelAllCooldowns() {
+        COOLDOWNS.clear();
+    }
+
+    public static boolean hasCooldown(UUID player, Class<?> targetClass) {
+        HashablePair<UUID, Class<?>> key = new HashablePair<>(player, targetClass);
+        return COOLDOWNS.containsKey(key);
+    }
+
+    public static List<Class<?>> getCooldowns(UUID player) {
+        return COOLDOWNS.keySet()
+                .stream()
+                .filter(key -> key.getLeft().compareTo(player) == 0)
+                .map(HashablePair::getRight)
+                .collect(Collectors.toList());
+    }
+
 
     interface GetDestination {
         TeleportDestination get();
