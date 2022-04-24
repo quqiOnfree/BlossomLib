@@ -5,5 +5,6 @@
   "blossom.countdown.title.counting.title": "Teleporting",
   "blossom.countdown.title.counting.subtitle": "Please stand still for %s more seconds",
   "blossom.countdown.title.done.title": "Teleporting...",
-  "blossom.countdown.title.done.subtitle": ""
+  "blossom.countdown.title.done.subtitle": "",
+  "blossom.error.has-countdown": "You already have an ongoing teleportation going on!"
 }
