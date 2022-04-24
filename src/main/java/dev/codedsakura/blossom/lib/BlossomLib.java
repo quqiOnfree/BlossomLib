@@ -86,7 +86,7 @@ public class BlossomLib implements ModInitializer {
                                                                 .executes(ctx -> {
                                                                     Vec2f rot = RotationArgumentType.getRotation(ctx, "rot")
                                                                             .toAbsoluteRotation(ctx.getSource());
-                                                                    TeleportUtils.teleport(
+                                                                    return TeleportUtils.teleport(
                                                                             null,
                                                                             IntegerArgumentType.getInteger(ctx, "standStill"),
                                                                             ctx.getSource().getPlayer(),
@@ -95,8 +95,7 @@ public class BlossomLib implements ModInitializer {
                                                                                     Vec3ArgumentType.getVec3(ctx, "pos"),
                                                                                     rot.y, rot.x
                                                                             )
-                                                                    );
-                                                                    return 1;
+                                                                    ) ? 1 : 0;
                                                                 }))))))));
     }
 }

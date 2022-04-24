@@ -160,18 +160,20 @@ public class TeleportUtils {
     }
 
 
-    public static void teleport(@Nullable TeleportConfig customConfig, double standStillTime, ServerPlayerEntity who, TeleportDestination where) {
-        teleport(customConfig, standStillTime, who, () -> where);
+    public static boolean teleport(@Nullable TeleportConfig customConfig, double standStillTime, ServerPlayerEntity who, TeleportDestination where) {
+        return teleport(customConfig, standStillTime, who, () -> where);
     }
 
-    public static void teleport(@Nullable TeleportConfig customConfig, double standStillTime, ServerPlayerEntity who, GetDestination getWhere) {
+    public static boolean teleport(@Nullable TeleportConfig customConfig, double standStillTime, ServerPlayerEntity who, GetDestination getWhere) {
         if (hasCountdowns(who.getUuid())) {
             who.sendMessage(TextUtils.fTranslation("blossom.error.has-countdown", TextUtils.Type.ERROR), false);
+            return false;
         }
         genericCountdown(customConfig, standStillTime, who, () -> {
             TeleportDestination where = getWhere.get();
             who.teleport(where.world, where.x, where.y, where.z, where.yaw, where.pitch);
         });
+        return true;
     }
 
     interface GetDestination {
