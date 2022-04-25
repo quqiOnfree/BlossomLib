@@ -6,6 +6,7 @@ BlossomLib is a Minecraft Fabric library mod build for the Blossom-series mods.
 
 - [Dependencies](#dependencies)
 - [Config](#config)
+- [Commands & their permissions](#commands--their-permissions)
 - [Translation keys](#translation-keys)
 
 ## Dependencies
@@ -59,6 +60,23 @@ for the file output
 `modifiers`: String - characters `b` - bold, `i` - italics, `u` - underline, `o` - obfuscated, `s` - strikethrough, can
 appear in any order  
 *`counterColor`: String (valid text color) - color of the counter in the title / subtitle
+
+## Commands & their permissions
+
+- `/tpcancel` - cancel any ongoing teleport / countdown  
+  Permission: `blossom.tpcancel` (default: true)
+- `/blossomlib` - library specific commands  
+  Permission: `blossom.lib.base-command` (default: OP level 2)
+  - `reload-config` - reload and apply config from the config file  
+    Permission `blossom.lib.base-command.reload-config` (default: OP level 3)
+  - `clear-countdowns [<player>]` - clear all or specific players countdowns  
+    Permission `blossom.lib.base-command.clear.countdowns` (default: OP level 2)
+  - `clear-cooldowns [<player>] [<type>]` - clear all or specific players specific type cooldowns  
+    Permission `blossom.lib.base-command.clear.cooldowns` (default: OP level 2)
+  - `debug` - debug commands  
+    Permission `blossom.lib.base-command.debug` (default: OP level 4)
+    - `countdown <standStill>` - create an arbitrary countdown
+    - `teleport <standStill> [<cooldown>] <pos> <rot>` - create an arbitrary teleport
 
 ## Translation keys
 
