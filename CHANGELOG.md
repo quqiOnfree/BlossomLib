@@ -5,6 +5,7 @@
 * Add allowBack config option
 * Add /tpcancel
 * Document commands in README.md
+* Add command registration to reduce children mod dependency on FabricAPI
 
 # 0.0.1-alpha2+1.18.2
 

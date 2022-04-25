@@ -2,6 +2,7 @@ package dev.codedsakura.blossom.lib;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
@@ -9,10 +10,12 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.command.argument.RotationArgumentType;
 import net.minecraft.command.argument.Vec3ArgumentType;
+import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.math.Vec2f;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.Logger;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static net.minecraft.server.command.CommandManager.argument;
@@ -45,6 +48,7 @@ class BlossomLibConfig {
 public class BlossomLib implements ModInitializer {
     static BlossomLibConfig CONFIG = BlossomConfig.load(BlossomLibConfig.class, "BlossomLib.json");
     public static final Logger LOGGER = CustomLogger.createLogger("BlossomLib");
+    private static final ArrayList<LiteralArgumentBuilder<ServerCommandSource>> COMMANDS = new ArrayList<>();
 
     @Override
     public void onInitialize() {
@@ -167,6 +171,12 @@ public class BlossomLib implements ModInitializer {
                         TeleportUtils.cancelCountdowns(ctx.getSource().getPlayer().getUuid());
                         return 1;
                     }));
+
+            COMMANDS.forEach(dispatcher::register);
         });
+    }
+
+    public void addCommand(LiteralArgumentBuilder<ServerCommandSource> command) {
+        COMMANDS.add(command);
     }
 }
