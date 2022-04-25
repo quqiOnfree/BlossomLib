@@ -106,6 +106,8 @@ public class TeleportConfig {
 
     ParticleAnimation particleAnimation = ParticleAnimation.OFF;
 
+    boolean allowBack = true;
+
     enum ParticleAnimation {
         OFF
     }
@@ -117,6 +119,8 @@ public class TeleportConfig {
 
         newOne.bossBar = this.bossBar == null ? defaultConf.bossBar : defaultConf.bossBar.cloneMerge(this.bossBar);
         newOne.titleMessage = this.titleMessage == null ? defaultConf.titleMessage : defaultConf.titleMessage.cloneMerge(this.titleMessage);
+
+        newOne.allowBack = this.allowBack && defaultConf.allowBack;
 
         return newOne;
     }

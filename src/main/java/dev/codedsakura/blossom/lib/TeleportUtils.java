@@ -25,6 +25,7 @@ import static dev.codedsakura.blossom.lib.BlossomLib.LOGGER;
 public class TeleportUtils {
     private static final ArrayList<CounterRunnable> TASKS = new ArrayList<>();
     private static final HashMap<HashablePair<UUID, Class<?>>, Long> COOLDOWNS = new HashMap<>();
+    private static final HashMap<UUID, TeleportDestination> LAST_TELEPORT = new HashMap<>();
     private static final String IDENTIFIER = "blossom:standstill";
 
     static void tick() {
@@ -179,7 +180,13 @@ public class TeleportUtils {
                 return false;
             }
         }
+
+
         genericCountdown(customConfig, standStillTime, who, () -> {
+            final TeleportConfig config = customConfig == null ? BlossomLib.CONFIG.baseTeleportation : customConfig.cloneMerge();
+            if (config.allowBack) {
+                LAST_TELEPORT.put(who.getUuid(), new TeleportDestination(who));
+            }
             TeleportDestination where = getWhere.get();
             who.teleport(where.world, where.x, where.y, where.z, where.yaw, where.pitch);
             COOLDOWNS.put(pair, new Date().getTime() / 1000 + cooldownTime);
@@ -200,6 +207,12 @@ public class TeleportUtils {
     public static void cancelAllCooldowns() {
         COOLDOWNS.clear();
     }
+
+
+    public static TeleportDestination getLastTeleport(UUID player) {
+        return LAST_TELEPORT.get(player);
+    }
+
 
     public static boolean hasCooldown(UUID player, Class<?> targetClass) {
         HashablePair<UUID, Class<?>> key = new HashablePair<>(player, targetClass);

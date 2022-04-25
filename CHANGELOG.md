@@ -1,6 +1,8 @@
 # 0.0.1-beta1+1.18.2
 
 * Add teleport and cooldown helper to TeleportUtils
+* Add previous location storing for /back
+* Add allowBack config option
 
 # 0.0.1-alpha2+1.18.2
 
