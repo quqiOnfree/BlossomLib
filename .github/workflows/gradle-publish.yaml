@@ -34,5 +34,5 @@ jobs:
         with:
           artifacts: "build/libs/*.jar"
           prerelease: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PA_TOKEN }}
           body: "See [CHANGELOG.md](CHANGELOG.md)"
