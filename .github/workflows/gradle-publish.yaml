@@ -35,4 +35,4 @@ jobs:
           artifacts: "build/libs/*.jar"
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          body: "See README.md"
+          body: "See [CHANGELOG.md](CHANGELOG.md)"
