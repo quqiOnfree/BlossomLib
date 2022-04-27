@@ -176,7 +176,7 @@ public class BlossomLib implements ModInitializer {
         });
     }
 
-    public void addCommand(LiteralArgumentBuilder<ServerCommandSource> command) {
+    public static void addCommand(LiteralArgumentBuilder<ServerCommandSource> command) {
         COMMANDS.add(command);
     }
 }

@@ -1,4 +1,4 @@
-# 0.0.1-beta1+1.18.2
+# 0.0.1-beta1
 
 * Add teleport and cooldown helper to TeleportUtils
 * Add previous location storing for /back
@@ -7,7 +7,7 @@
 * Document commands in README.md
 * Add command registration to reduce children mod dependency on FabricAPI
 
-# 0.0.1-alpha2+1.18.2
+# 0.0.1-alpha2
 
 * Add a config
 * Update logger to use the config
@@ -16,14 +16,14 @@
 * Add README.md to document config shape
 * Add Fabric API
 * Add commands for reloading config, clearing countdown, debug
-* Add Server Translations API
+* Add [Server Translations API](https://github.com/arthurbambou/Server-Translations)
 * Update config
 * Update TeleportUtils to have translations
 * Separate TeleportConfig into its own file
 
-# 0.0.1-alpha1+1.18.2
+# 0.0.1-alpha1
 
 * Initialize project
-* Add [fabric-permissions-api]() as an optional dependency
+* Add [fabric-permissions-api](https://github.com/lucko/fabric-permissions-api) as an optional dependency
 * Add custom logger that could write to a logfile
 * Add GitHub CI
