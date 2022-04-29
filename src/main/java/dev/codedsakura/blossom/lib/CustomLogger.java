@@ -13,9 +13,9 @@ import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration;
 import static org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilderFactory.newConfigurationBuilder;
 
 public class CustomLogger {
-    private static final LoggerContext CONTEXT;
+    private static LoggerContext CONTEXT = null;
 
-    static {
+    private static void initialize() {
         Configurator.reconfigure();
         Appender sysOut = LoggerContext.getContext(false).getConfiguration().getAppender("SysOut");
         ConfigurationBuilder<BuiltConfiguration> builder = newConfigurationBuilder();
@@ -52,6 +52,9 @@ public class CustomLogger {
      * @return a custom {@link Logger} with the provided name
      */
     public static Logger createLogger(String name) {
+        if (CONTEXT == null) {
+            initialize();
+        }
         return CONTEXT.getLogger(name);
     }
 }
