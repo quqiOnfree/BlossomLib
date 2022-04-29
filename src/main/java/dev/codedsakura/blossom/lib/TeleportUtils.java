@@ -228,7 +228,7 @@ public class TeleportUtils {
     }
 
 
-    interface GetDestination {
+    public interface GetDestination {
         TeleportDestination get();
     }
 
