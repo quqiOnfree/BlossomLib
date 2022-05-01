@@ -38,6 +38,7 @@ class BlossomLibConfig {
 
     static class Colors {
         String base = "light_purple";
+        String warn = "yellow";
         String error = "red";
         String success = "green";
         String variable = "gold";

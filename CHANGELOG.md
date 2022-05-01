@@ -1,3 +1,7 @@
+# 0.1.0-rc.1
+
+* Add warn color to config
+
 # 0.0.1-beta1
 
 * Add teleport and cooldown helper to TeleportUtils

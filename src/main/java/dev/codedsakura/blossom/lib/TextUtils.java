@@ -59,7 +59,8 @@ public class TextUtils {
                 Arrays.stream(args).map(TextUtils::variable).toArray()
         ).styled(style -> switch (t) {
             case ERROR -> style.withColor(TextColor.parse(CONFIG.colors.error));
-            case WARN, INFO -> style.withColor(TextColor.parse(CONFIG.colors.base));
+            case WARN -> style.withColor(TextColor.parse(CONFIG.colors.warn));
+            case INFO -> style.withColor(TextColor.parse(CONFIG.colors.base));
             case SUCCESS -> style.withColor(TextColor.parse(CONFIG.colors.success));
         });
     }

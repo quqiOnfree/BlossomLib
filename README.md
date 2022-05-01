@@ -22,7 +22,9 @@ This library's config file can be found at `config/BlossomMods/BlossomLib.json`,
 the mod at least once.
 
 `logging`: [LoggingConfig](#loggingconfig) - settings to do with BlossomMods logging  
-`baseTeleportation`: [TeleportationConfig](#teleportationconfig) - default teleportation settings
+`baseTeleportation`: [TeleportationConfig](#teleportationconfig) - default teleportation settings  
+`colors`: [Colors](#colors) - text colors  
+`storageMedium`: String (`NBT`, `CSV`, `JSON`) - what data format to store data (applies to all Blossom mods)
 
 ### LoggingConfig
 
@@ -60,6 +62,17 @@ for the file output
 `modifiers`: String - characters `b` - bold, `i` - italics, `u` - underline, `o` - obfuscated, `s` - strikethrough, can
 appear in any order  
 *`counterColor`: String (valid text color) - color of the counter in the title / subtitle
+
+### Colors
+
+These colors will be only applied to Blossom mods chat responses
+
+`base`: String - the text color in which most text responses will be  
+`warn`: String - the text color in which warning messages will be  
+`error`: String - the text color in which error messages will be  
+`success`: String - the text color in which success messages will be  
+`variable`: String - the text color in which variables will be  
+`player`: String - the text color in which player names will be
 
 ## Commands & their permissions
 
