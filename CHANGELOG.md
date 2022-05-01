@@ -5,6 +5,7 @@
   `blossom.clear-cooldowns.all`, `blossom.clear-cooldowns.one`, `blossom.clear-cooldowns.type`,
   `blossom.debug.countdown.start`, `blossom.debug.countdown.end`, `blossom.debug.teleport.no-cooldown`,
   `blossom.debug.teleport.cooldown`, `blossom.tpcancel`
+* Add SaveController for managing NBT, CSV, Json data
 
 # 0.0.1-beta1
 
