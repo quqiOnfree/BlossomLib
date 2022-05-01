@@ -1,6 +1,8 @@
 package dev.codedsakura.blossom.lib;
 
+import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.TextColor;
@@ -65,16 +67,35 @@ public class TextUtils {
         });
     }
 
-    public static MutableText fTranslation(String key, Type t) {
-        return fTranslation(key, t, new Object[]{});
-    }
-
-
-    public static MutableText translation(String key) {
-        return fTranslation(key, Type.INFO);
-    }
-
     public static MutableText translation(String key, Object... args) {
         return fTranslation(key, Type.INFO, args);
+    }
+
+    public static void send(CommandContext<ServerCommandSource> ctx, String key, Object... args) {
+        ctx.getSource().sendFeedback(translation(key, args), false);
+    }
+
+    public static void sendOps(CommandContext<ServerCommandSource> ctx, String key, Object... args) {
+        ctx.getSource().sendFeedback(translation(key, args), true);
+    }
+
+    public static void sendWarn(CommandContext<ServerCommandSource> ctx, String key, Object... args) {
+        ctx.getSource().sendFeedback(fTranslation(key, Type.WARN, args), false);
+    }
+
+    public static void sendWarnOps(CommandContext<ServerCommandSource> ctx, String key, Object... args) {
+        ctx.getSource().sendFeedback(fTranslation(key, Type.WARN, args), true);
+    }
+
+    public static void sendSuccess(CommandContext<ServerCommandSource> ctx, String key, Object... args) {
+        ctx.getSource().sendFeedback(fTranslation(key, Type.SUCCESS, args), false);
+    }
+
+    public static void sendSuccessOps(CommandContext<ServerCommandSource> ctx, String key, Object... args) {
+        ctx.getSource().sendFeedback(fTranslation(key, Type.SUCCESS, args), true);
+    }
+
+    public static void sendErr(CommandContext<ServerCommandSource> ctx, String key, Object... args) {
+        ctx.getSource().sendError(fTranslation(key, Type.ERROR, args));
     }
 }
