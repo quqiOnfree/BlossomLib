@@ -1,6 +1,10 @@
 # 0.1.0-rc.1
 
 * Add warn color to config
+* 11 new translation keys: `blossom.config-reload`, `blossom.clear-countdowns.all`, `blossom.clear-countdowns.one`,
+  `blossom.clear-cooldowns.all`, `blossom.clear-cooldowns.one`, `blossom.clear-cooldowns.type`,
+  `blossom.debug.countdown.start`, `blossom.debug.countdown.end`, `blossom.debug.teleport.no-cooldown`,
+  `blossom.debug.teleport.cooldown`, `blossom.tpcancel`
 
 # 0.0.1-beta1
 

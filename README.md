@@ -100,3 +100,9 @@ only keys with available arguments are shown, for full list, please see
 - `blossom.countdown.action_bar.counting`: 1 argument - seconds remaining
 - `blossom.countdown.title.counting.title`: 1 argument - seconds remaining
 - `blossom.countdown.title.counting.subtitle`: 1 argument - seconds remaining
+- `blossom.clear-countdowns.one`: 1 argument - player whose countdown was cleared
+- `blossom.clear-cooldowns.one`: 1 argument - player whose cooldown was cleared
+- `blossom.clear-cooldowns.type`: 2 arguments - player whose cooldown was cleared, type of cleared cooldown
+- `blossom.debug.countdown.start`: 1 argument - standstill time
+- `blossom.debug.teleport.no-cooldown`: 1 argument - standstill time
+- `blossom.debug.teleport.cooldown`: 2 arguments - standstill time, cooldown time

@@ -45,7 +45,7 @@ public class TextUtils {
     public static MutableText player(PlayerEntity player) {
         return player.getDisplayName().copy()
                 .styled(style -> {
-                    if (style.getColor() != null && style.getColor().equals(TextColor.parse("white"))) {
+                    if (style.getColor() == null) {
                         style.withColor(TextColor.parse(CONFIG.colors.player));
                     }
                     return style;

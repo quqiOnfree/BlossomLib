@@ -7,5 +7,16 @@
   "blossom.countdown.title.done.title": "Teleporting...",
   "blossom.countdown.title.done.subtitle": "",
   "blossom.error.has-countdown": "You already have an ongoing teleportation going on!",
-  "blossom.error.has-cooldown": "You cannot use this command for %s more seconds!"
+  "blossom.error.has-cooldown": "You cannot use this command for %s more seconds!",
+  "blossom.config-reload": "Config reloaded",
+  "blossom.clear-countdowns.all": "All countdowns cleared",
+  "blossom.clear-countdowns.one": "Countdowns for %s cleared",
+  "blossom.clear-cooldowns.all": "All cooldowns cleared",
+  "blossom.clear-cooldowns.one": "All cooldowns for %s cleared",
+  "blossom.clear-cooldowns.type": "Cooldowns of type %2$s for %1$s cleared",
+  "blossom.debug.countdown.start": "Cooldown (%s s) started",
+  "blossom.debug.countdown.end": "Cooldown ended",
+  "blossom.debug.teleport.no-cooldown": "Teleport (%s s) initiated",
+  "blossom.debug.teleport.cooldown": "Teleport (%s s) with %s s cooldown initialed",
+  "blossom.tpcancel": "Teleportation cancelled"
 }
