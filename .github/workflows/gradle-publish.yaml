@@ -22,10 +22,12 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Gradle
-        run: gradle build
+        uses: gradle/gradle-build-action@v2
 
       - name: Publish to GitHub Packages
-        run: gradle publish
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: publish
         env:
           USERNAME: ${{ github.actor }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
