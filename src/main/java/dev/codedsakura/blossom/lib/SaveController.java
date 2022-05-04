@@ -104,10 +104,18 @@ public abstract class SaveController<T> extends PersistentState {
                             .set(getFilename(), this);
                     markDirty();
                 }
-                case CSV -> writeCSV(getWriter(server, "csv"));
-                case JSON -> writeJson(getWriter(server, "json"));
+                case CSV -> {
+                    OutputStreamWriter writer = getWriter(server, "csv");
+                    writeCSV(writer);
+                    writer.close();
+                }
+                case JSON -> {
+                    OutputStreamWriter writer = getWriter(server, "json");
+                    writeJson(writer);
+                    writer.close();
+                }
             }
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             BlossomLib.LOGGER.throwing(e);
         }
     }
@@ -120,7 +128,7 @@ public abstract class SaveController<T> extends PersistentState {
                 case CSV -> readCSV(getReader(server, "csv"));
                 case JSON -> readJson(getReader(server, "json"));
             };
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             BlossomLib.LOGGER.info(e.getMessage());
             return null;
         }

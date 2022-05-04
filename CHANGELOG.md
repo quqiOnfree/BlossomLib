@@ -1,3 +1,7 @@
+# 0.1.0-rc.2
+
+* Fix SaveController not saving JSON properly
+
 # 0.1.0-rc.1
 
 * Add warn color to config
