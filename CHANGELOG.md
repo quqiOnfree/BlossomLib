@@ -1,3 +1,7 @@
+# 0.2.0-rc.2
+
+* Add ListDataController for parsing JSON arrays
+
 # 0.2.0-rc.1
 
 * Remove CSV, NBT from SaveController
