@@ -45,8 +45,6 @@ class BlossomLibConfig {
         String variable = "gold";
         String player = "aqua";
     }
-
-    StorageMedium storageMedium = StorageMedium.NBT;
 }
 
 public class BlossomLib implements ModInitializer {

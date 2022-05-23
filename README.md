@@ -24,7 +24,6 @@ the mod at least once.
 `logging`: [LoggingConfig](#loggingconfig) - settings to do with BlossomMods logging  
 `baseTeleportation`: [TeleportationConfig](#teleportationconfig) - default teleportation settings  
 `colors`: [Colors](#colors) - text colors  
-`storageMedium`: String (`NBT`, `CSV`, `JSON`) - what data format to store data (applies to all Blossom mods)
 
 ### LoggingConfig
 

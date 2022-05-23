@@ -1,3 +1,8 @@
+# 0.2.0-rc.1
+
+* Remove CSV, NBT from SaveController
+* Rename SaveController to DataController to better reflect its purpose
+
 # 0.1.0-rc.2
 
 * Fix SaveController not saving JSON properly
