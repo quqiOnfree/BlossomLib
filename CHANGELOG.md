@@ -1,3 +1,7 @@
+# 0.2.0-rc.3
+
+* Fix ListDataController#getArrayClassType not being public
+
 # 0.2.0-rc.2
 
 * Add ListDataController for parsing JSON arrays

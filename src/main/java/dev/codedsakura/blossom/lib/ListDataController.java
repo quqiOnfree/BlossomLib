@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ListDataController<T> extends DataController<List<T>> {
-    abstract Class<T[]> getArrayClassType();
+    public abstract Class<T[]> getArrayClassType();
 
     @Override
     protected List<T> readJson(InputStreamReader reader) {
