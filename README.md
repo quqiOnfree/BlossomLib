@@ -11,7 +11,11 @@ BlossomLib is a Minecraft Fabric library mod build for the Blossom-series mods.
 
 ## Dependencies
 
-* [Fabric API]()
+* [Fabric API](https://github.com/FabricMC/fabric/tree/1.18.2)
+  ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
+  / [Modrinth](https://modrinth.com/mod/fabric-api)),
+  or [Quilt Standard Libraries](https://github.com/QuiltMC/quilt-standard-libraries) ([Modrinth](https://modrinth.com/mod/qsl))
+  if using [Quilt](https://quiltmc.org/)
 * [fabric-permissions-api](https://github.com/lucko/fabric-permissions-api) / [Luckperms](https://luckperms.net/) /
   etc. (Optional)
 * [server-translations-api](https://github.com/arthurbambou/Server-Translations) (Embedded)

@@ -2,6 +2,7 @@
 
 * Remove CSV, NBT from SaveController
 * Rename SaveController to DataController to better reflect its purpose
+* Add more links to README.md
 
 # 0.1.0-rc.2
 
