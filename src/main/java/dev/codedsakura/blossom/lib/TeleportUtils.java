@@ -13,6 +13,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.TextColor;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 
 import javax.annotation.Nullable;
@@ -239,6 +240,14 @@ public class TeleportUtils {
 
         public TeleportDestination(ServerWorld world, Vec3d pos, float yaw, float pitch) {
             this(world, pos.x, pos.y, pos.z, yaw, pitch);
+        }
+
+        public TeleportDestination(ServerWorld world, double x, double y, double z, Vec2f rotation) {
+            this(world, x, y, z, rotation.x, rotation.y);
+        }
+
+        public TeleportDestination(ServerWorld world, Vec3d pos, Vec2f rotation) {
+            this(world, pos.x, pos.y, pos.z, rotation.x, rotation.y);
         }
 
         public TeleportDestination(PlayerEntity player) {
