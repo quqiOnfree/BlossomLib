@@ -46,7 +46,7 @@ public class TextUtils {
         return player.getDisplayName().copy()
                 .styled(style -> {
                     if (style.getColor() == null) {
-                        style.withColor(TextColor.parse(CONFIG.colors.player));
+                        return style.withColor(TextColor.parse(CONFIG.colors.player));
                     }
                     return style;
                 });

@@ -1,3 +1,8 @@
+# 0.2.0-rc.4
+
+* Add more constructors to TeleportUtils.TeleportDestination
+* Fix TextUtils.player not applying the style correctly
+
 # 0.2.0-rc.3
 
 * Fix ListDataController#getArrayClassType not being public
