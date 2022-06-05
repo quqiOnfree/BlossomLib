@@ -75,7 +75,9 @@ These colors will be only applied to Blossom mods chat responses
 `error`: String - the text color in which error messages will be  
 `success`: String - the text color in which success messages will be  
 `variable`: String - the text color in which variables will be  
-`player`: String - the text color in which player names will be
+`player`: String - the text color in which player names will be  
+`command`: String - the text color in which commands will be  
+`commandDescription`: String - the text color in which command descriptions will be
 
 ## Commands & their permissions
 

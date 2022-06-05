@@ -44,6 +44,8 @@ class BlossomLibConfig {
         String success = "green";
         String variable = "gold";
         String player = "aqua";
+        String command = "gold";
+        String commandDescription = "white";
     }
 }
 

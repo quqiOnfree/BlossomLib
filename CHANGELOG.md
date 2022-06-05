@@ -1,3 +1,7 @@
+# 1.0.0-rc.2
+
+* Add CommandTextBuilder to simplify commands with hover action & click action
+
 # 0.2.0-rc.4
 
 * Add more constructors to TeleportUtils.TeleportDestination

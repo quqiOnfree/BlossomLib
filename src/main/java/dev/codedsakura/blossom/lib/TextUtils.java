@@ -37,6 +37,8 @@ public class TextUtils {
     public static MutableText variable(Object var) {
         if (var instanceof PlayerEntity) {
             return player((PlayerEntity) var);
+        } else if (var instanceof CommandTextBuilder) {
+            return ((CommandTextBuilder) var).asColoredText().shallowCopy();
         }
         return variable(var.toString());
     }
