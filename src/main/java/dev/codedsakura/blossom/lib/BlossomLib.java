@@ -50,7 +50,7 @@ class BlossomLibConfig {
 }
 
 public class BlossomLib implements ModInitializer {
-    static BlossomLibConfig CONFIG = BlossomConfig.load(BlossomLibConfig.class, "BlossomLib.json");
+    static BlossomLibConfig CONFIG = ConfigManager.register(BlossomLibConfig.class, "BlossomLib.json", newConf -> CONFIG = newConf);
     public static final Logger LOGGER = CustomLogger.createLogger("BlossomLib");
     private static final ArrayList<LiteralArgumentBuilder<ServerCommandSource>> COMMANDS = new ArrayList<>();
 
@@ -61,13 +61,34 @@ public class BlossomLib implements ModInitializer {
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             dispatcher.register(literal("blossomlib")
                     .requires(Permissions.require("blossom.lib.base-command", 2))
-                    .then(literal("reload-config")
-                            .requires(Permissions.require("blossom.lib.base-command.reload-config", 3))
+                    .then(literal("reload-configs")
+                            .requires(Permissions.require("blossom.lib.base-command.reload-configs", 3))
                             .executes(ctx -> {
-                                CONFIG = BlossomConfig.load(BlossomLibConfig.class, "BlossomLib.json");
-                                TextUtils.sendOps(ctx, "blossom.config-reload");
+                                ConfigManager.refreshAll();
+                                TextUtils.sendOps(ctx, "blossom.configs-reload");
                                 return 1;
-                            }))
+                            })
+                            .then(argument("module", StringArgumentType.string())
+                                    .suggests((ctx, builder) -> {
+                                        String start = builder.getRemaining().toLowerCase();
+                                        ConfigManager.getAllRegistered()
+                                                .stream()
+                                                .map(Class::getSimpleName)
+                                                .sorted(String::compareToIgnoreCase)
+                                                .filter(c -> c.toLowerCase().startsWith(start))
+                                                .forEach(builder::suggest);
+                                        return builder.buildFuture();
+                                    })
+                                    .executes(ctx -> {
+                                        String module = StringArgumentType.getString(ctx, "module");
+                                        Class<?> target = ConfigManager.getAllRegistered()
+                                                .stream()
+                                                .filter(c -> c.getSimpleName().equals(module))
+                                                .findFirst().orElseThrow();
+                                        ConfigManager.refresh(target);
+                                        TextUtils.sendOps(ctx, "blossom.config-reload", target);
+                                        return 1;
+                                    })))
                     .then(literal("clear-countdowns")
                             .requires(Permissions.require("blossom.lib.base-command.clear.countdowns", 2))
                             .executes(ctx -> {

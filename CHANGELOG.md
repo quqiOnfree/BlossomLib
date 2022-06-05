@@ -1,6 +1,8 @@
 # 1.0.0-rc.2
 
 * Add CommandTextBuilder to simplify commands with hover action & click action
+* Add ConfigManager to simplify config reloading
+* Add commands for ConfigManager
 
 # 0.2.0-rc.4
 

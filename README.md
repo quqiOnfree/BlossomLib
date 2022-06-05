@@ -111,3 +111,4 @@ only keys with available arguments are shown, for full list, please see
 - `blossom.debug.countdown.start`: 1 argument - standstill time
 - `blossom.debug.teleport.no-cooldown`: 1 argument - standstill time
 - `blossom.debug.teleport.cooldown`: 2 arguments - standstill time, cooldown time
+- `blossom.config-reload`: 1 argument - module name
