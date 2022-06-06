@@ -112,3 +112,6 @@ only keys with available arguments are shown, for full list, please see
 - `blossom.debug.teleport.no-cooldown`: 1 argument - standstill time
 - `blossom.debug.teleport.cooldown`: 2 arguments - standstill time, cooldown time
 - `blossom.config-reload`: 1 argument - module name
+- `blossom.text.command.display`: 1 argument - display text
+- `blossom.text.command.plain`: 1 argument - display text/command run
+- `blossom.text.command.description`: 2 arguments - display text/command run, description

@@ -1,3 +1,9 @@
+# 1.0.0-rc.3
+
+* Fix CTB (CommandTextBuilder) failing when no description provided
+* Add more options to CTB
+* Add & document locale keys for CTB
+
 # 1.0.0-rc.2
 
 * Add CommandTextBuilder to simplify commands with hover action & click action
