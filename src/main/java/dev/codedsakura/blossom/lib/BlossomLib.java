@@ -1,5 +1,6 @@
 package dev.codedsakura.blossom.lib;
 
+import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -18,6 +19,7 @@ import org.apache.logging.log4j.core.Logger;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
@@ -52,7 +54,9 @@ class BlossomLibConfig {
 public class BlossomLib implements ModInitializer {
     static BlossomLibConfig CONFIG = ConfigManager.register(BlossomLibConfig.class, "BlossomLib.json", newConf -> CONFIG = newConf);
     public static final Logger LOGGER = CustomLogger.createLogger("BlossomLib");
+
     private static final ArrayList<LiteralArgumentBuilder<ServerCommandSource>> COMMANDS = new ArrayList<>();
+    private static final ArrayList<Consumer<CommandDispatcher<ServerCommandSource>>> COMMAND_CONSUMERS = new ArrayList<>();
 
     @Override
     public void onInitialize() {
@@ -217,10 +221,16 @@ public class BlossomLib implements ModInitializer {
                     }));
 
             COMMANDS.forEach(dispatcher::register);
+
+            COMMAND_CONSUMERS.forEach(consumer -> consumer.accept(dispatcher));
         });
     }
 
     public static void addCommand(LiteralArgumentBuilder<ServerCommandSource> command) {
         COMMANDS.add(command);
+    }
+
+    public static void registerCommand(Consumer<CommandDispatcher<ServerCommandSource>> callback) {
+        COMMAND_CONSUMERS.add(callback);
     }
 }

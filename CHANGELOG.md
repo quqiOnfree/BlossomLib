@@ -1,3 +1,7 @@
+# 1.1.0
+
+* Add another way to register commands
+
 # 1.0.0-rc.3
 
 * Fix CTB (CommandTextBuilder) failing when no description provided
