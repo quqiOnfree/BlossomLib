@@ -1,3 +1,7 @@
+# 1.2.0
+
+* Add JoiningCollector
+
 # 1.1.0
 
 * Add another way to register commands

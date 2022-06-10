@@ -18,6 +18,9 @@ public class CustomLogger {
     private static void initialize() {
         Configurator.reconfigure();
         Appender sysOut = LoggerContext.getContext(false).getConfiguration().getAppender("SysOut");
+        if (!sysOut.isStarted()) {
+            sysOut = LoggerContext.getContext(false).getConfiguration().getAppender("ServerGuiConsole");
+        }
         ConfigurationBuilder<BuiltConfiguration> builder = newConfigurationBuilder();
 
         builder.add(
