@@ -67,24 +67,24 @@ public class CommandTextBuilder {
     }
 
     private Text getDescription() {
-        MutableText command = new LiteralText(hoverShowDisplay ? commandDisplay : commandRun)
+        MutableText command = Text.literal(hoverShowDisplay ? commandDisplay : commandRun)
                 .styled(descriptionStyle -> descriptionStyle.withColor(TextColor.parse(CONFIG.colors.command)));
         if (description == null) {
-            return new TranslatableText(
+            return TextUtils.translation(
                     "blossom.text.command.plain",
                     command
             );
         }
-        return new TranslatableText(
+        return TextUtils.translation(
                 "blossom.text.command.description",
                 command,
-                description.shallowCopy()
+                description.copy()
                         .styled(descriptionStyle -> descriptionStyle.withColor(TextColor.parse(CONFIG.colors.commandDescription)))
         );
     }
 
     public Text asColoredText() {
-        return new TranslatableText(
+        return TextUtils.translation(
                 "blossom.text.command.display",
                 commandDisplay
         ).styled(style -> style

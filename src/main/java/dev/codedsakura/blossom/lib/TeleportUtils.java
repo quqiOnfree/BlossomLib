@@ -9,9 +9,8 @@ import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
@@ -47,9 +46,9 @@ public class TeleportUtils {
         if (config.bossBar.enabled) {
             commandBossBar = server.getBossBarManager().add(
                     new Identifier(IDENTIFIER + "_" + who.getUuidAsString()),
-                    new TranslatableText(
+                    TextUtils.translation(
                             "blossom.countdown.boss_bar.name",
-                            new LiteralText(Integer.toString(standTicks))
+                            Text.literal(Integer.toString(standTicks))
                                     .styled(style -> style.withColor(TextColor.parse(CONFIG.colors.variable)))
                     ).styled(style -> style.withColor(TextColor.parse(config.bossBar.textColor)))
             );
@@ -107,9 +106,9 @@ public class TeleportUtils {
                 if (finalCommandBossBar != null) {
                     finalCommandBossBar.setPercent((float) counter / standTicks);
                     finalCommandBossBar.setName(
-                            new TranslatableText(
+                            TextUtils.translation(
                                     "blossom.countdown.boss_bar.name",
-                                    new LiteralText(Integer.toString(remaining))
+                                    Text.literal(Integer.toString(remaining))
                                             .styled(style -> style.withColor(TextColor.parse(CONFIG.colors.variable)))
                             ).styled(style -> style.withColor(TextColor.parse(config.bossBar.textColor)))
                     );
