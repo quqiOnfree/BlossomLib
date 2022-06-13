@@ -47,6 +47,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: publish
+          cache-read-only: false
         env:
           USERNAME: ${{ github.actor }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
