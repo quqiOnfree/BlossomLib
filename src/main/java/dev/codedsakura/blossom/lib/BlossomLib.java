@@ -5,6 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.codedsakura.blossom.lib.config.ConfigManager;
+import dev.codedsakura.blossom.lib.permissions.Permissions;
 import dev.codedsakura.blossom.lib.teleport.TeleportUtils;
 import dev.codedsakura.blossom.lib.text.TextUtils;
 import net.fabricmc.api.ModInitializer;

@@ -1,4 +1,4 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.permissions;
 
 import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.minecraft.server.command.ServerCommandSource;
@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Predicate;
 
-@Deprecated
 class PermissionsExecutor {
     static Predicate<ServerCommandSource> require(@NotNull String permission, boolean defaultValue) {
         return Permissions.require(permission, defaultValue);

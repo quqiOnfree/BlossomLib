@@ -1,4 +1,4 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.permissions;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.Entity;
@@ -9,10 +9,7 @@ import java.util.function.Predicate;
 
 /**
  * Helper class to make fabric-permissions-api an optional dependency
- *
- * @version alpha1
  */
-@Deprecated
 public class Permissions {
     private static boolean fpaLoaded = false;
     private static boolean fpaLoadedChecked = false;
