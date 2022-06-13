@@ -1,5 +1,6 @@
 package dev.codedsakura.blossom.lib;
 
+import dev.codedsakura.blossom.lib.teleport.TeleportConfig;
 import org.apache.logging.log4j.Level;
 
 public class BlossomLibConfig {
@@ -12,7 +13,7 @@ public class BlossomLibConfig {
         boolean fileLogAppend = true;
     }
 
-    TeleportConfig baseTeleportation = new TeleportConfig(true);
+    public TeleportConfig baseTeleportation = new TeleportConfig(true);
 
     public Colors colors = new Colors();
 

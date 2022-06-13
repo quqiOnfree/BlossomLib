@@ -1,6 +1,7 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.teleport;
 
-import dev.codedsakura.blossom.lib.teleport.TeleportConfig;
+import dev.codedsakura.blossom.lib.BlossomLib;
+import dev.codedsakura.blossom.lib.HashablePair;
 import dev.codedsakura.blossom.lib.text.TextUtils;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.CommandBossBar;
@@ -24,14 +25,13 @@ import java.util.stream.Collectors;
 import static dev.codedsakura.blossom.lib.BlossomLib.CONFIG;
 import static dev.codedsakura.blossom.lib.BlossomLib.LOGGER;
 
-@Deprecated
 public class TeleportUtils {
     private static final ArrayList<CounterRunnable> TASKS = new ArrayList<>();
     private static final HashMap<HashablePair<UUID, Class<?>>, Long> COOLDOWNS = new HashMap<>();
     private static final HashMap<UUID, TeleportDestination> LAST_TELEPORT = new HashMap<>();
     private static final String IDENTIFIER = "blossom:standstill";
 
-    static void tick() {
+    public static void tick() {
         TASKS.forEach(CounterRunnable::run);
         TASKS.removeIf(CounterRunnable::shouldRemove);
     }
@@ -144,7 +144,7 @@ public class TeleportUtils {
         return TASKS.stream().anyMatch(task -> task.player.compareTo(player) == 0);
     }
 
-    static void clearAll() {
+    public static void clearAll() {
         TASKS.forEach(task -> task.counter = -1);
     }
 
