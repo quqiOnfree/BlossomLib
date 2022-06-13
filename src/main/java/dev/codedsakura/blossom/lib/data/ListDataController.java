@@ -1,11 +1,10 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.data;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-@Deprecated
 public abstract class ListDataController<T> extends DataController<List<T>> {
     public abstract Class<T[]> getArrayClassType();
 

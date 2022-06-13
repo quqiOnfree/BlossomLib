@@ -1,14 +1,14 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dev.codedsakura.blossom.lib.BlossomLib;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.WorldSavePath;
 
 import java.io.*;
 
-@Deprecated
 public abstract class DataController<T> {
     protected static final Gson GSON = new GsonBuilder()
             .setPrettyPrinting()
