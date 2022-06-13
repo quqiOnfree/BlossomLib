@@ -1,18 +1,16 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.config;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-@Deprecated
 record Config<T>(Class<T> clazz, Consumer<T> apply, String filename) {
     void refresh() {
         apply.accept(BlossomConfig.load(clazz, filename));
     }
 }
 
-@Deprecated
 public class ConfigManager {
     private static final ArrayList<Config<?>> configs = new ArrayList<>();
 
@@ -22,8 +20,7 @@ public class ConfigManager {
     }
 
     public static void unregister(Class<?> clazz) {
-        configs
-                .removeIf(conf -> conf.clazz().equals(clazz));
+        configs.removeIf(conf -> conf.clazz().equals(clazz));
     }
 
     public static void refresh(Class<?> clazz) {

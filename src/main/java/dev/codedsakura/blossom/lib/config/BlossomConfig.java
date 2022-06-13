@@ -1,4 +1,4 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 
-@Deprecated
 public class BlossomConfig {
     private static final Gson GSON = new GsonBuilder()
             .setPrettyPrinting()
@@ -39,7 +38,8 @@ public class BlossomConfig {
         if (config == null) {
             try {
                 config = clazz.getDeclaredConstructor().newInstance();
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                     NoSuchMethodException e) {
                 e.printStackTrace();
                 System.exit(1);
             }

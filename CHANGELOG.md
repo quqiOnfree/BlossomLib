@@ -1,3 +1,7 @@
+# 1.3.0
+
+* Improve project structure
+
 # 1.2.1
 
 * Improve CI
