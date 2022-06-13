@@ -1,5 +1,6 @@
 package dev.codedsakura.blossom.lib;
 
+import dev.codedsakura.blossom.lib.text.TextUtils;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;

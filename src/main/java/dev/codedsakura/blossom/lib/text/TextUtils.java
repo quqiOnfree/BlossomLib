@@ -1,4 +1,4 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.text;
 
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,7 +11,6 @@ import java.util.Arrays;
 
 import static dev.codedsakura.blossom.lib.BlossomLib.CONFIG;
 
-@Deprecated
 public class TextUtils {
     public static MutableText variable(String str) {
         return Text.literal(str)

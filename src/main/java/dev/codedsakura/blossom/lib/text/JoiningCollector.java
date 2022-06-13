@@ -1,10 +1,9 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.text;
 
 import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
-@Deprecated
 public class JoiningCollector<T> {
     private final BinaryOperator<T> add;
     private final Supplier<T> joiner;

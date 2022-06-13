@@ -1,5 +1,6 @@
 package dev.codedsakura.blossom.lib;
 
+import dev.codedsakura.blossom.lib.text.TextUtils;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.CommandBossBar;
 import net.minecraft.entity.player.PlayerEntity;

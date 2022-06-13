@@ -1,10 +1,9 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.text;
 
 import net.minecraft.text.*;
 
 import static dev.codedsakura.blossom.lib.BlossomLib.CONFIG;
 
-@Deprecated
 public class CommandTextBuilder {
     private String commandDisplay;
     private String commandRun;

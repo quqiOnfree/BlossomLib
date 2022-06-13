@@ -5,6 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.codedsakura.blossom.lib.config.ConfigManager;
+import dev.codedsakura.blossom.lib.text.TextUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -14,7 +15,6 @@ import net.minecraft.command.argument.Vec3ArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Vec2f;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.Logger;
 
 import java.util.ArrayList;
@@ -25,34 +25,8 @@ import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
 
-class BlossomLibConfig {
-    LoggingConfig logging = new LoggingConfig();
-
-    static class LoggingConfig {
-        String consoleLogLevel = Level.INFO.name();
-        String fileLogLevel = Level.WARN.name();
-        String fileLogPath = "logs/BlossomMods.log";
-        boolean fileLogAppend = true;
-    }
-
-    TeleportConfig baseTeleportation = new TeleportConfig(true);
-
-    Colors colors = new Colors();
-
-    static class Colors {
-        String base = "light_purple";
-        String warn = "yellow";
-        String error = "red";
-        String success = "green";
-        String variable = "gold";
-        String player = "aqua";
-        String command = "gold";
-        String commandDescription = "white";
-    }
-}
-
 public class BlossomLib implements ModInitializer {
-    static BlossomLibConfig CONFIG = ConfigManager.register(BlossomLibConfig.class, "BlossomLib.json", newConf -> CONFIG = newConf);
+    public static BlossomLibConfig CONFIG = ConfigManager.register(BlossomLibConfig.class, "BlossomLib.json", newConf -> CONFIG = newConf);
     public static final Logger LOGGER = CustomLogger.createLogger("BlossomLib");
 
     private static final ArrayList<LiteralArgumentBuilder<ServerCommandSource>> COMMANDS = new ArrayList<>();
