@@ -1,5 +1,6 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.utils;
 
+import dev.codedsakura.blossom.lib.BlossomLib;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.Appender;
 import org.apache.logging.log4j.core.Filter;
@@ -12,7 +13,6 @@ import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration;
 
 import static org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilderFactory.newConfigurationBuilder;
 
-@Deprecated
 public class CustomLogger {
     private static LoggerContext CONTEXT = null;
 

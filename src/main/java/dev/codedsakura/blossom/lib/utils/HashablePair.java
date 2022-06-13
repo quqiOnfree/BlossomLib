@@ -1,6 +1,5 @@
-package dev.codedsakura.blossom.lib;
+package dev.codedsakura.blossom.lib.utils;
 
-@Deprecated
 public class HashablePair<A, B> {
     A left;
     B right;

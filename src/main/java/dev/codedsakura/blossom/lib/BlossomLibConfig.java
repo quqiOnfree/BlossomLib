@@ -4,13 +4,13 @@ import dev.codedsakura.blossom.lib.teleport.TeleportConfig;
 import org.apache.logging.log4j.Level;
 
 public class BlossomLibConfig {
-    LoggingConfig logging = new LoggingConfig();
+    public LoggingConfig logging = new LoggingConfig();
 
-    static class LoggingConfig {
-        String consoleLogLevel = Level.INFO.name();
-        String fileLogLevel = Level.WARN.name();
-        String fileLogPath = "logs/BlossomMods.log";
-        boolean fileLogAppend = true;
+    public static class LoggingConfig {
+        public String consoleLogLevel = Level.INFO.name();
+        public String fileLogLevel = Level.WARN.name();
+        public String fileLogPath = "logs/BlossomMods.log";
+        public boolean fileLogAppend = true;
     }
 
     public TeleportConfig baseTeleportation = new TeleportConfig(true);

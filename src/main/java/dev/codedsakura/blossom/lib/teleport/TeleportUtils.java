@@ -1,8 +1,8 @@
 package dev.codedsakura.blossom.lib.teleport;
 
 import dev.codedsakura.blossom.lib.BlossomLib;
-import dev.codedsakura.blossom.lib.HashablePair;
 import dev.codedsakura.blossom.lib.text.TextUtils;
+import dev.codedsakura.blossom.lib.utils.HashablePair;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.CommandBossBar;
 import net.minecraft.entity.player.PlayerEntity;
