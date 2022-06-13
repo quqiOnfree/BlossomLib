@@ -46,20 +46,28 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
 
+      - name: Publish to GitHub Packages
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: publish
+        env:
+          USERNAME: ${{ github.actor }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload build output (libs)
         uses: actions/upload-artifact@v3
         with:
           name: libs
-          path: build/libs/*.jar
+          path: build/libs/
 
       - name: Upload build output (devlibs)
         uses: actions/upload-artifact@v3
         with:
           name: devlibs
-          path: build/devlibs/*.jar
+          path: build/devlibs/
 
-  publish:
-    name: Publish packages & create a release
+  release:
+    name: Create a release
     runs-on: ubuntu-latest
 
     steps:
@@ -71,25 +79,11 @@ jobs:
         with:
           name: changelog
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'gradle'
-
-      - name: Publish to GitHub Packages
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: publish
-        env:
-          USERNAME: ${{ github.actor }}
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Download libs
         uses: actions/download-artifact@v3
         with:
           name: libs
+          path: build/libs/
 
       - name: Create release
         uses: ncipollo/release-action@v1
