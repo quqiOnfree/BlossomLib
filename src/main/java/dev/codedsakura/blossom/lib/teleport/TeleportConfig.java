@@ -1,27 +1,38 @@
 package dev.codedsakura.blossom.lib.teleport;
 
 import dev.codedsakura.blossom.lib.BlossomLib;
+import dev.codedsakura.blossom.lib.utils.CubicBezierCurve;
 
 public class TeleportConfig {
-    public TeleportConfig(boolean defaults) {
-        bossBar = defaults ? new BossBarConfig(true) : null;
-        titleMessage = defaults ? new TitleMessageConfig(true) : null;
-    }
 
     public BossBarConfig bossBar;
 
+
     public TitleMessageConfig titleMessage;
+
 
     public boolean actionBarMessageEnabled = false;
 
-    public boolean fovEffectEnabled = false;
+
+    public CubicBezierCurve fovEffectBefore = new CubicBezierCurve(new double[]{0, 0, 0, 1}, 1, .1, 10);
+
+    public CubicBezierCurve fovEffectAfter = new CubicBezierCurve(new double[]{0, 1, 1, 1}, .1, 1, 10);
+
 
     public ParticleAnimation particleAnimation = ParticleAnimation.OFF;
 
+
     public boolean allowBack = true;
+
 
     public enum ParticleAnimation {
         OFF
+    }
+
+
+    public TeleportConfig(boolean defaults) {
+        bossBar = defaults ? new BossBarConfig(true) : null;
+        titleMessage = defaults ? new TitleMessageConfig(true) : null;
     }
 
     public TeleportConfig cloneMerge() {
