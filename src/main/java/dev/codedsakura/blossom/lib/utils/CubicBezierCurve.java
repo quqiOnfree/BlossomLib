@@ -15,7 +15,7 @@ public class CubicBezierCurve {
     private final double end;
     private final int stepCount;
 
-    public final ArrayList<Double> data = new ArrayList<>();
+    private final ArrayList<Double> data = new ArrayList<>();
 
     public CubicBezierCurve(double[] points, double start, double end, int stepCount) {
         this.points = points;
@@ -34,6 +34,7 @@ public class CubicBezierCurve {
     }
 
     private void generateData() {
+        double difference = end - start;
         data.add(start);
         for (int i = 1; i < stepCount; i++) {
             double targetX = (double) i / (double) stepCount;
@@ -42,12 +43,37 @@ public class CubicBezierCurve {
             int step = 2;
 
             while (abs(tX - targetX) < TARGET_PRECISION) {
+//                if (step > 20) {
+//                    System.out.printf("Took long to calculate bezier!\n", targetX, t);
+//                    break;
+//                }
                 t += (tX > targetX ? -1 : 1) / pow(2, step);
+                tX = calculateX(t);
                 step++;
             }
-            data.add(calculateY(t));
+            data.add(start + calculateY(t) * difference);
         }
         data.add(end);
+    }
+
+    public double[] getPoints() {
+        return points;
+    }
+
+    public double getStart() {
+        return start;
+    }
+
+    public double getEnd() {
+        return end;
+    }
+
+    public int getStepCount() {
+        return stepCount;
+    }
+
+    public ArrayList<Double> getData() {
+        return data;
     }
 
     @Override

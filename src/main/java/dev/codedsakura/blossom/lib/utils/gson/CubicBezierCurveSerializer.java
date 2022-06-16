@@ -5,7 +5,7 @@ import dev.codedsakura.blossom.lib.utils.CubicBezierCurve;
 
 import java.lang.reflect.Type;
 
-public class CubicBezierCurveDeserializer implements JsonDeserializer<CubicBezierCurve> {
+public class CubicBezierCurveSerializer implements JsonDeserializer<CubicBezierCurve>, JsonSerializer<CubicBezierCurve> {
     @Override
     public CubicBezierCurve deserialize
             (JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
@@ -28,5 +28,22 @@ public class CubicBezierCurveDeserializer implements JsonDeserializer<CubicBezie
         int stepCount = jsonObject.get("stepCount").getAsInt();
 
         return new CubicBezierCurve(values, start, end, stepCount);
+    }
+
+    @Override
+    public JsonElement serialize(CubicBezierCurve cubicBezierCurve, Type type, JsonSerializationContext jsonSerializationContext) {
+        JsonObject jsonObject = new JsonObject();
+
+        JsonArray valuesList = new JsonArray();
+        for (double point : cubicBezierCurve.getPoints()) {
+            valuesList.add(point);
+        }
+        jsonObject.add("values", valuesList);
+
+        jsonObject.addProperty("start", cubicBezierCurve.getStart());
+        jsonObject.addProperty("end", cubicBezierCurve.getEnd());
+        jsonObject.addProperty("stepCount", cubicBezierCurve.getStepCount());
+
+        return jsonObject;
     }
 }

@@ -3,7 +3,7 @@ package dev.codedsakura.blossom.lib.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dev.codedsakura.blossom.lib.utils.CubicBezierCurve;
-import dev.codedsakura.blossom.lib.utils.gson.CubicBezierCurveDeserializer;
+import dev.codedsakura.blossom.lib.utils.gson.CubicBezierCurveSerializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,7 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class BlossomConfig {
     private static final Gson GSON = new GsonBuilder()
-            .registerTypeAdapter(CubicBezierCurve.class, new CubicBezierCurveDeserializer())
+            .registerTypeAdapter(CubicBezierCurve.class, new CubicBezierCurveSerializer())
             .setPrettyPrinting()
             .serializeNulls()
             .disableHtmlEscaping()
