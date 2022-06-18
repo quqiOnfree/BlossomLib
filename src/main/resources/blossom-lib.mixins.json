@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.codedsakura.blossom.lib.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "PlayerAbilitiesS2CPacketSpoofWalkSpeedMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

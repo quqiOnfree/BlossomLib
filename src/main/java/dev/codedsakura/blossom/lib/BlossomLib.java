@@ -1,6 +1,8 @@
 package dev.codedsakura.blossom.lib;
 
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -9,6 +11,7 @@ import dev.codedsakura.blossom.lib.permissions.Permissions;
 import dev.codedsakura.blossom.lib.teleport.TeleportUtils;
 import dev.codedsakura.blossom.lib.text.TextUtils;
 import dev.codedsakura.blossom.lib.utils.CustomLogger;
+import dev.codedsakura.blossom.lib.utils.PlayerSetFoV;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -188,7 +191,13 @@ public class BlossomLib implements ModInitializer {
                                                                                         rot.y, rot.x
                                                                                 )
                                                                         ) ? 1 : 0;
-                                                                    }))))))));
+                                                                    }))))))
+                            .then(literal("fov")
+                                    .then(argument("multiplier", FloatArgumentType.floatArg())
+                                            .executes(ctx -> {
+                                                PlayerSetFoV.setPlayerFoV(ctx.getSource().getPlayer(), FloatArgumentType.getFloat(ctx, "multiplier"));
+                                                return Command.SINGLE_SUCCESS;
+                                            })))));
 
             dispatcher.register(literal("tpcancel")
                     .requires(

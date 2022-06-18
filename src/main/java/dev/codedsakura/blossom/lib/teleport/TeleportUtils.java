@@ -3,6 +3,7 @@ package dev.codedsakura.blossom.lib.teleport;
 import dev.codedsakura.blossom.lib.BlossomLib;
 import dev.codedsakura.blossom.lib.text.TextUtils;
 import dev.codedsakura.blossom.lib.utils.HashablePair;
+import dev.codedsakura.blossom.lib.utils.PlayerSetFoV;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.CommandBossBar;
 import net.minecraft.entity.player.PlayerEntity;
@@ -61,10 +62,10 @@ public class TeleportUtils {
         who.networkHandler.sendPacket(new TitleFadeS2CPacket(0, 10, 5));
 
         CommandBossBar finalCommandBossBar = commandBossBar;
-        TASKS.add(new CounterRunnable(standTicks, who.getUuid()) {
+        TASKS.add(new CounterRunnable(standTicks, -config.fovEffectAfter.getStepCount() - 1, who.getUuid()) {
             @Override
             void run() {
-                if (counter <= 0) {
+                if (counter == 0) {
                     LOGGER.debug("genericCountdown for {} has ended", player);
                     if (finalCommandBossBar != null) {
                         finalCommandBossBar.removePlayer(who);
@@ -89,9 +90,24 @@ public class TeleportUtils {
                         onDone.run();
                     }
 
+//                    PlayerSetFoV.clearPlayerFoV(who);
+
                     counter = -1;
                     return;
                 }
+
+                int stepIndex = config.fovEffectBefore.getStepCount() + 1 - counter;
+                if (counter > 0 && stepIndex >= 0) {
+                    LOGGER.debug("before {}", stepIndex);
+                    PlayerSetFoV.setPlayerFoV(who, (float) (double) config.fovEffectBefore.getData().get(stepIndex));
+                }
+                if (counter < 0) {
+                    LOGGER.debug("after {}", -counter - 1);
+                    PlayerSetFoV.setPlayerFoV(who, (float) (double) config.fovEffectAfter.getData().get(-counter - 1));
+                    counter--;
+                    return;
+                }
+
 
                 Vec3d pos = who.getPos();
                 double dist = lastPos[0].distanceTo(pos);
@@ -149,18 +165,19 @@ public class TeleportUtils {
     }
 
     private static abstract class CounterRunnable {
-        int counter;
+        int counter, endAt;
         UUID player;
 
-        public CounterRunnable(int counter, UUID player) {
+        public CounterRunnable(int counter, int endAt, UUID player) {
             this.counter = counter;
+            this.endAt = endAt;
             this.player = player;
         }
 
         abstract void run();
 
         boolean shouldRemove() {
-            return counter < 0;
+            return counter < endAt;
         }
     }
 

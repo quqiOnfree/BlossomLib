@@ -42,11 +42,7 @@ public class CubicBezierCurve {
             double tX = calculateX(t);
             int step = 2;
 
-            while (abs(tX - targetX) < TARGET_PRECISION) {
-//                if (step > 20) {
-//                    System.out.printf("Took long to calculate bezier!\n", targetX, t);
-//                    break;
-//                }
+            while (abs(tX - targetX) > TARGET_PRECISION) {
                 t += (tX > targetX ? -1 : 1) / pow(2, step);
                 tX = calculateX(t);
                 step++;
