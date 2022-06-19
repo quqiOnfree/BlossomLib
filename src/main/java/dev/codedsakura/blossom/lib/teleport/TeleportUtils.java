@@ -63,7 +63,8 @@ public class TeleportUtils {
 
         CommandBossBar finalCommandBossBar = commandBossBar;
         float[] lastFovMultiplier = new float[]{1f};
-        TASKS.add(new CounterRunnable(standTicks, -config.fovEffectAfter.getStepCount() - 1, who.getUuid()) {
+        int endAt = config.fovEffectAfter.isEnabled() ? -config.fovEffectAfter.getStepCount() - 1 : 0;
+        TASKS.add(new CounterRunnable(standTicks, endAt, who.getUuid()) {
             @Override
             void run() {
                 if (counter == 0) {
@@ -96,12 +97,12 @@ public class TeleportUtils {
                 }
 
                 int stepIndex = config.fovEffectBefore.getStepCount() + 1 - counter;
-                if (counter > 0 && stepIndex >= 0) {
+                if (config.fovEffectBefore.isEnabled() && counter > 0 && stepIndex >= 0) {
                     float newFov = (float) (double) config.fovEffectBefore.getData().get(stepIndex);
                     PlayerSetFoV.setPlayerFoV(who, 2 * newFov - lastFovMultiplier[0]);
                     lastFovMultiplier[0] = newFov;
                 }
-                if (counter < 0) {
+                if (config.fovEffectAfter.isEnabled() && counter < 0) {
                     stepIndex = -counter - 1;
                     float newFov = (float) (double) config.fovEffectAfter.getData().get(stepIndex);
                     PlayerSetFoV.setPlayerFoV(who, 2 * newFov - lastFovMultiplier[0]);

@@ -14,9 +14,9 @@ public class TeleportConfig {
     public boolean actionBarMessageEnabled = false;
 
 
-    public CubicBezierCurve fovEffectBefore = new CubicBezierCurve(new double[]{0, 0, 0, 1}, 1, .1, 10);
+    public CubicBezierCurve fovEffectBefore = new CubicBezierCurve(new double[]{1, 0, 1, 0}, 1, .5, 10, false);
 
-    public CubicBezierCurve fovEffectAfter = new CubicBezierCurve(new double[]{0, 1, 1, 1}, .1, 1, 10);
+    public CubicBezierCurve fovEffectAfter = new CubicBezierCurve(new double[]{0, 1, 0, 1.25}, .5, 1, 10, false);
 
 
     public ParticleAnimation particleAnimation = ParticleAnimation.OFF;

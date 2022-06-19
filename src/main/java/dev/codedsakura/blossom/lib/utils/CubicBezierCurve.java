@@ -10,6 +10,7 @@ import static java.lang.Math.pow;
 public class CubicBezierCurve {
     private static final double TARGET_PRECISION = 0.0001;
 
+    private final boolean enabled;
     private final double[] points;
     private final double start;
     private final double end;
@@ -17,12 +18,15 @@ public class CubicBezierCurve {
 
     private final ArrayList<Double> data = new ArrayList<>();
 
-    public CubicBezierCurve(double[] points, double start, double end, int stepCount) {
+    public CubicBezierCurve(double[] points, double start, double end, int stepCount, boolean enabled) {
         this.points = points;
         this.start = start;
         this.end = end;
         this.stepCount = stepCount;
-        this.generateData();
+        this.enabled = enabled;
+        if (enabled) {
+            this.generateData();
+        }
     }
 
     private double calculateX(double t) {
@@ -50,6 +54,10 @@ public class CubicBezierCurve {
             data.add(start + calculateY(t) * difference);
         }
         data.add(end);
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public double[] getPoints() {

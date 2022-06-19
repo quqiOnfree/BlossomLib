@@ -26,13 +26,16 @@ public class CubicBezierCurveSerializer implements JsonDeserializer<CubicBezierC
         double start = jsonObject.get("start").getAsDouble();
         double end = jsonObject.get("end").getAsDouble();
         int stepCount = jsonObject.get("stepCount").getAsInt();
+        boolean enabled = jsonObject.get("enabled").getAsBoolean();
 
-        return new CubicBezierCurve(values, start, end, stepCount);
+        return new CubicBezierCurve(values, start, end, stepCount, enabled);
     }
 
     @Override
     public JsonElement serialize(CubicBezierCurve cubicBezierCurve, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject jsonObject = new JsonObject();
+
+        jsonObject.addProperty("enabled", cubicBezierCurve.isEnabled());
 
         JsonArray valuesList = new JsonArray();
         for (double point : cubicBezierCurve.getPoints()) {
