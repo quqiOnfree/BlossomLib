@@ -1,3 +1,8 @@
+# 1.4.0
+
+* Add FOV animations
+* Fix Text being incorrectly converted to as string
+
 # 1.3.0
 
 * Improve project structure

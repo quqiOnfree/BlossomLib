@@ -43,7 +43,8 @@ for the file output
 `bossBar`: [BossBar](#bossbar) - settings altering the boss bar  
 `titleMessage`: [TitleMessage](#titlemessage) - settings altering the title message  
 `actionBarMessageEnabled`: boolean - whether to show a message in the action bar when counting down  
-~~`fovEffectEnabled`: boolean - whether to make a FOV (field of view) animation when teleporting~~  
+`fovEffectBefore`: [CubicBezierCurve](#cubicbeziercurve) - FOV animation before the teleportation  
+`fovEffectAfter`: [CubicBezierCurve](#cubicbeziercurve) - FOV animation after the teleportation  
 ~~`particleAnimation`: [ParticleAnimation]() - which particle animation to use~~
 
 ### BossBar
@@ -65,6 +66,17 @@ for the file output
 `modifiers`: String - characters `b` - bold, `i` - italics, `u` - underline, `o` - obfuscated, `s` - strikethrough, can
 appear in any order  
 *`counterColor`: String (valid text color) - color of the counter in the title / subtitle
+
+### CubicBezierCurve
+
+[Cubic bezier curve generator](https://cubic-bezier.com/)
+
+`enabled`: boolean - whether to even play the animation at all  
+`values`: float[4] - 4 values defining the cubic-bezier curve; 1st & 3rd values **must** be between 1 and 0, weird
+things will happen if they're not!  
+`start`: float - beginning value  
+`end`: float - final value  
+`stepCount`: int - how many steps the animation should generate
 
 ### Colors
 
@@ -95,6 +107,7 @@ These colors will be only applied to Blossom mods chat responses
     Permission `blossom.lib.base-command.debug` (default: OP level 4)
     - `countdown <standStill>` - create an arbitrary countdown
     - `teleport <standStill> [<cooldown>] <pos> <rot>` - create an arbitrary teleport
+    - `fov <multiplier>` - set player FOV
 
 ## Translation keys
 
