@@ -62,6 +62,7 @@ public class TeleportUtils {
         who.networkHandler.sendPacket(new TitleFadeS2CPacket(0, 10, 5));
 
         CommandBossBar finalCommandBossBar = commandBossBar;
+        float[] lastFovMultiplier = new float[]{1f};
         TASKS.add(new CounterRunnable(standTicks, -config.fovEffectAfter.getStepCount() - 1, who.getUuid()) {
             @Override
             void run() {
@@ -90,20 +91,21 @@ public class TeleportUtils {
                         onDone.run();
                     }
 
-//                    PlayerSetFoV.clearPlayerFoV(who);
-
                     counter = -1;
                     return;
                 }
 
                 int stepIndex = config.fovEffectBefore.getStepCount() + 1 - counter;
                 if (counter > 0 && stepIndex >= 0) {
-                    LOGGER.debug("before {}", stepIndex);
-                    PlayerSetFoV.setPlayerFoV(who, (float) (double) config.fovEffectBefore.getData().get(stepIndex));
+                    float newFov = (float) (double) config.fovEffectBefore.getData().get(stepIndex);
+                    PlayerSetFoV.setPlayerFoV(who, 2 * newFov - lastFovMultiplier[0]);
+                    lastFovMultiplier[0] = newFov;
                 }
                 if (counter < 0) {
-                    LOGGER.debug("after {}", -counter - 1);
-                    PlayerSetFoV.setPlayerFoV(who, (float) (double) config.fovEffectAfter.getData().get(-counter - 1));
+                    stepIndex = -counter - 1;
+                    float newFov = (float) (double) config.fovEffectAfter.getData().get(stepIndex);
+                    PlayerSetFoV.setPlayerFoV(who, 2 * newFov - lastFovMultiplier[0]);
+                    lastFovMultiplier[0] = newFov;
                     counter--;
                     return;
                 }
@@ -115,7 +117,9 @@ public class TeleportUtils {
                     if (dist != 0) lastPos[0] = pos;
                     counter--;
                 } else {
-                    LOGGER.debug("genericCountdown for {} has been reset after {} ticks", player, standTicks);
+                    LOGGER.debug("genericCountdown for {} has been reset after {} ticks", player, standTicks - counter);
+                    lastFovMultiplier[0] = 1f;
+                    PlayerSetFoV.setPlayerFoV(who, 1);
                     lastPos[0] = pos;
                     counter = standTicks;
                 }
