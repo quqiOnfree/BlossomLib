@@ -1,3 +1,8 @@
+# 2.0.0
+
+* Fix /tpcancel
+* Remove deprecated files
+
 # 1.4.0
 
 * Add FOV animations

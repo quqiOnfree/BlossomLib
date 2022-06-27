@@ -64,38 +64,34 @@ public class TeleportUtils {
         CommandBossBar finalCommandBossBar = commandBossBar;
         float[] lastFovMultiplier = new float[]{1f};
         int endAt = config.fovEffectAfter.isEnabled() ? -config.fovEffectAfter.getStepCount() - 1 : 0;
+
         TASKS.add(new CounterRunnable(standTicks, endAt, who.getUuid()) {
-            @Override
-            void run() {
-                if (counter == 0) {
-                    LOGGER.debug("genericCountdown for {} has ended", player);
-                    if (finalCommandBossBar != null) {
-                        finalCommandBossBar.removePlayer(who);
-                        server.getBossBarManager().remove(finalCommandBossBar);
-                    }
-                    if (config.titleMessage.enabled) {
-                        who.networkHandler.sendPacket(new SubtitleS2CPacket(
-                                config.titleMessage.subtitleDone.getText("blossom.countdown.title.done.subtitle")
-                        ));
-                        who.networkHandler.sendPacket(new TitleS2CPacket(
-                                config.titleMessage.titleDone.getText("blossom.countdown.title.done.title")
-                        ));
-                    }
-
-                    if (counter == 0) {
-                        if (config.actionBarMessageEnabled) {
-                            who.sendMessage(
-                                    TextUtils.translation("blossom.countdown.action_bar.done"),
-                                    true
-                            );
-                        }
-                        onDone.run();
-                    }
-
-                    counter = -1;
+            private void handleZero() {
+                if (counter != 0) {
                     return;
                 }
 
+                LOGGER.debug("genericCountdown for {} has ended", player);
+                cleanUp();
+                if (config.titleMessage.enabled) {
+                    who.networkHandler.sendPacket(new SubtitleS2CPacket(
+                            config.titleMessage.subtitleDone.getText("blossom.countdown.title.done.subtitle")
+                    ));
+                    who.networkHandler.sendPacket(new TitleS2CPacket(
+                            config.titleMessage.titleDone.getText("blossom.countdown.title.done.title")
+                    ));
+                }
+
+                if (config.actionBarMessageEnabled) {
+                    who.sendMessage(
+                            TextUtils.translation("blossom.countdown.action_bar.done"),
+                            true
+                    );
+                }
+                onDone.run();
+            }
+
+            private void changeFov() {
                 int stepIndex = config.fovEffectBefore.getStepCount() + 1 - counter;
                 if (config.fovEffectBefore.isEnabled() && counter > 0 && stepIndex >= 0) {
                     float newFov = (float) (double) config.fovEffectBefore.getData().get(stepIndex);
@@ -107,22 +103,31 @@ public class TeleportUtils {
                     float newFov = (float) (double) config.fovEffectAfter.getData().get(stepIndex);
                     PlayerSetFoV.setPlayerFoV(who, 2 * newFov - lastFovMultiplier[0]);
                     lastFovMultiplier[0] = newFov;
-                    counter--;
-                    return;
                 }
+            }
 
+            private boolean isStill() {
+                if (counter < 1) {
+                    return true;
+                }
 
                 Vec3d pos = who.getPos();
                 double dist = lastPos[0].distanceTo(pos);
                 if (dist < .05) {
                     if (dist != 0) lastPos[0] = pos;
-                    counter--;
+                    return true;
                 } else {
                     LOGGER.debug("genericCountdown for {} has been reset after {} ticks", player, standTicks - counter);
                     lastFovMultiplier[0] = 1f;
                     PlayerSetFoV.setPlayerFoV(who, 1);
                     lastPos[0] = pos;
-                    counter = standTicks;
+                    return false;
+                }
+            }
+
+            private void updateCountdown() {
+                if (counter < 1) {
+                    return;
                 }
 
                 int remaining = (int) Math.floor((counter / 20f) + 1);
@@ -152,13 +157,67 @@ public class TeleportUtils {
                     ));
                 }
             }
+
+            @Override
+            protected void run() {
+                handleZero();
+
+                changeFov();
+
+                if (!isStill()) {
+                    counter = standTicks;
+                    return;
+                }
+
+                updateCountdown();
+
+                counter--;
+            }
+
+            @Override
+            protected void cleanUp() {
+                if (finalCommandBossBar != null) {
+                    finalCommandBossBar.removePlayer(who);
+                    server.getBossBarManager().remove(finalCommandBossBar);
+                }
+
+                if (counter != 0) {
+                    PlayerSetFoV.setPlayerFoV(who, 1);
+                }
+            }
         });
+    }
+
+    private static abstract class CounterRunnable {
+        int counter, endAt;
+        UUID player;
+        boolean forceRemove = false;
+
+        public CounterRunnable(int counter, int endAt, UUID player) {
+            this.counter = counter;
+            this.endAt = endAt;
+            this.player = player;
+            cleanUp();
+        }
+
+        protected abstract void run();
+
+        protected abstract void cleanUp();
+
+        boolean shouldRemove() {
+            return forceRemove || counter < endAt;
+        }
+
+        void remove() {
+            cleanUp();
+            forceRemove = true;
+        }
     }
 
     public static void cancelCountdowns(UUID player) {
         TASKS.stream()
                 .filter(task -> task.player.compareTo(player) == 0)
-                .forEach(task -> task.counter = -1);
+                .forEach(CounterRunnable::remove);
     }
 
     public static boolean hasCountdowns(UUID player) {
@@ -166,24 +225,7 @@ public class TeleportUtils {
     }
 
     public static void clearAll() {
-        TASKS.forEach(task -> task.counter = -1);
-    }
-
-    private static abstract class CounterRunnable {
-        int counter, endAt;
-        UUID player;
-
-        public CounterRunnable(int counter, int endAt, UUID player) {
-            this.counter = counter;
-            this.endAt = endAt;
-            this.player = player;
-        }
-
-        abstract void run();
-
-        boolean shouldRemove() {
-            return counter < endAt;
-        }
+        TASKS.forEach(CounterRunnable::remove);
     }
 
 

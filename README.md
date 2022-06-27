@@ -72,7 +72,7 @@ appear in any order
 [Cubic bezier curve generator](https://cubic-bezier.com/)
 
 `enabled`: boolean - whether to even play the animation at all  
-`values`: float[4] - 4 values defining the cubic-bezier curve; 1st & 3rd values **must** be between 1 and 0, weird
+`values`: float\[4] - 4 values defining the cubic-bezier curve; 1st & 3rd values **must** be between 1 and 0, weird
 things will happen if they're not!  
 `start`: float - beginning value  
 `end`: float - final value  
@@ -112,7 +112,7 @@ These colors will be only applied to Blossom mods chat responses
 ## Translation keys
 
 only keys with available arguments are shown, for full list, please see
-[`src/main/resources/data/blossom/lang/en_us.json`](https://github.com/BlossomMods/BlossomLib/blob/main/src/main/resources/data/blossom/lang/en_us.json)
+[`src/main/resources/data/blossom/lang/en_us.json`](src/main/resources/data/blossom/lang/en_us.json)
 
 - `blossom.countdown.boss_bar.name`: 1 argument - seconds remaining
 - `blossom.countdown.action_bar.counting`: 1 argument - seconds remaining

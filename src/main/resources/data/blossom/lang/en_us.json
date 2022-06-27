@@ -20,6 +20,7 @@
   "blossom.debug.teleport.no-cooldown": "Teleport (%s s) initiated",
   "blossom.debug.teleport.cooldown": "Teleport (%s s) with %s s cooldown initialed",
   "blossom.tpcancel": "Teleportation cancelled",
+  "blossom.tpcancel.fail": "No ongoing teleports!",
   "blossom.text.command.display": "%s",
   "blossom.text.command.plain": "%s",
   "blossom.text.command.description": "%s\n\n%s"
