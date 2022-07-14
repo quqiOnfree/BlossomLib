@@ -1,3 +1,7 @@
+# 2.2.0
+
+* Add DimName helper
+
 # 2.1.0
 
 * Add TextSuperJoiner for use in item lists

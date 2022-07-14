@@ -9,6 +9,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.codedsakura.blossom.lib.config.ConfigManager;
 import dev.codedsakura.blossom.lib.permissions.Permissions;
 import dev.codedsakura.blossom.lib.teleport.TeleportUtils;
+import dev.codedsakura.blossom.lib.text.DimName;
 import dev.codedsakura.blossom.lib.text.TextUtils;
 import dev.codedsakura.blossom.lib.utils.CustomLogger;
 import dev.codedsakura.blossom.lib.utils.PlayerSetFoV;
@@ -16,6 +17,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.argument.IdentifierArgumentType;
 import net.minecraft.command.argument.RotationArgumentType;
 import net.minecraft.command.argument.Vec3ArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
@@ -24,6 +26,7 @@ import net.minecraft.util.math.Vec2f;
 import org.apache.logging.log4j.core.Logger;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Consumer;
 
@@ -195,7 +198,16 @@ public class BlossomLib implements ModInitializer {
                             .then(literal("fov")
                                     .then(argument("multiplier", FloatArgumentType.floatArg())
                                             .executes(ctx -> {
-                                                PlayerSetFoV.setPlayerFoV(ctx.getSource().getPlayer(), FloatArgumentType.getFloat(ctx, "multiplier"));
+                                                PlayerSetFoV.setPlayerFoV(
+                                                        Objects.requireNonNull(ctx.getSource().getPlayer()),
+                                                        FloatArgumentType.getFloat(ctx, "multiplier")
+                                                );
+                                                return Command.SINGLE_SUCCESS;
+                                            })))
+                            .then(literal("dimName")
+                                    .then(argument("identifier", IdentifierArgumentType.identifier())
+                                            .executes(ctx -> {
+                                                TextUtils.send(ctx, "Result: %s", DimName.get(IdentifierArgumentType.getIdentifier(ctx, "identifier")));
                                                 return Command.SINGLE_SUCCESS;
                                             })))));
 

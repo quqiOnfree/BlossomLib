@@ -28,6 +28,8 @@ the mod at least once.
 `logging`: [LoggingConfig](#loggingconfig) - settings to do with BlossomMods logging  
 `baseTeleportation`: [TeleportationConfig](#teleportationconfig) - default teleportation settings  
 `colors`: [Colors](#colors) - text colors  
+`dimNameOverrides`: Map<String, String> - a map of dimension name overrides, for example set to
+`{ "minecraft:the_nether": "The Underworld" }` to display The Nether as The Underworld
 
 ### LoggingConfig
 

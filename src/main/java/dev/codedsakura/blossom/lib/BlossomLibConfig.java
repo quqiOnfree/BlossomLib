@@ -3,6 +3,8 @@ package dev.codedsakura.blossom.lib;
 import dev.codedsakura.blossom.lib.teleport.TeleportConfig;
 import org.apache.logging.log4j.Level;
 
+import java.util.Map;
+
 public class BlossomLibConfig {
     public LoggingConfig logging = new LoggingConfig();
 
@@ -27,4 +29,6 @@ public class BlossomLibConfig {
         public String command = "gold";
         public String commandDescription = "white";
     }
+
+    public Map<String, String> dimNameOverrides = null;
 }
