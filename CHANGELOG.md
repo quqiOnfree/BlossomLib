@@ -1,3 +1,8 @@
+# 2.1.0
+
+* Add TextSuperJoiner for use in item lists
+* Bump ServerTranslationAPI
+
 # 2.0.0
 
 * Fix /tpcancel
