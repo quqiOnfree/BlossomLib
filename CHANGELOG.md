@@ -1,3 +1,7 @@
+# 2.2.1
+
+* Add a toString method to TeleportDestination
+
 # 2.2.0
 
 * Add DimName helper
