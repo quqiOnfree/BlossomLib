@@ -39,7 +39,8 @@ for the console output
 `fileLogLevel`: String (`OFF`, `FATAL`, `ERROR`, `WARN`, `INFO`, `DEBUG`, `TRACE`, `ALL`) - BlossomMods logging level
 for the file output  
 `fileLogPath`: String - where to put the BlossomMods log file  
-`fileLogAppend`: boolean - whether to keep the old BlossomMods logs on server startup
+`fileLogAppend`: boolean - whether to keep the old BlossomMods logs on server startup  
+`disableCustomLogger`: boolean - whether to completely bypass the custom logger in case of a mod incompatibility
 
 ### TeleportationConfig
 

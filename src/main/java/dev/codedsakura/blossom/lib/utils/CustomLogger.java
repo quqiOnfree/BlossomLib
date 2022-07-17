@@ -18,10 +18,13 @@ public class CustomLogger {
 
     private static void initialize() {
         Configurator.reconfigure();
-        Appender sysOut = LoggerContext.getContext(false).getConfiguration().getAppender("SysOut");
-        if (!sysOut.isStarted()) {
-            sysOut = LoggerContext.getContext(false).getConfiguration().getAppender("ServerGuiConsole");
+
+        if (BlossomLib.CONFIG.logging.disableCustomLogger) {
+            CONTEXT = LoggerContext.getContext(true);
+            return;
         }
+
+        Appender sysOut = LoggerContext.getContext(false).getConfiguration().getAppender("SysOut");
         ConfigurationBuilder<BuiltConfiguration> builder = newConfigurationBuilder();
 
         builder.add(

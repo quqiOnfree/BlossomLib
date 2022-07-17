@@ -43,6 +43,8 @@ public class BlossomLib implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        LOGGER.info("BlossomLib is starting...");
+
         ServerTickEvents.END_SERVER_TICK.register(_server -> TeleportUtils.tick());
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registry, environment) -> {

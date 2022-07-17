@@ -13,6 +13,7 @@ public class BlossomLibConfig {
         public String fileLogLevel = Level.WARN.name();
         public String fileLogPath = "logs/BlossomMods.log";
         public boolean fileLogAppend = true;
+        public boolean disableCustomLogger = false;
     }
 
     public TeleportConfig baseTeleportation = new TeleportConfig(true);

@@ -1,6 +1,7 @@
 # 2.3.0
 
 * Add MC-124177 fix
+* Add bypass for custom logger to fix #1
 
 # 2.2.1
 
