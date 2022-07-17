@@ -31,4 +31,6 @@ public class BlossomLibConfig {
     }
 
     public Map<String, String> dimNameOverrides = null;
+
+    public boolean enableMC124177Fix = true;
 }

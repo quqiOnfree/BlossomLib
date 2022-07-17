@@ -1,3 +1,7 @@
+# 2.3.0
+
+* Add MC-124177 fix
+
 # 2.2.1
 
 * Add a toString method to TeleportDestination

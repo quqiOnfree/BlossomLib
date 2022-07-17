@@ -29,7 +29,8 @@ the mod at least once.
 `baseTeleportation`: [TeleportationConfig](#teleportationconfig) - default teleportation settings  
 `colors`: [Colors](#colors) - text colors  
 `dimNameOverrides`: Map<String, String> - a map of dimension name overrides, for example set to
-`{ "minecraft:the_nether": "The Underworld" }` to display The Nether as The Underworld
+`{ "minecraft:the_nether": "The Underworld" }` to display The Nether as The Underworld  
+`enableMC124177Fix`: boolean - Enable a fix for [MC-124177](https://bugs.mojang.com/browse/MC-124177) / CrossDimTPFix
 
 ### LoggingConfig
 

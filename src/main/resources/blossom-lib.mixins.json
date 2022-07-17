@@ -3,7 +3,9 @@
   "minVersion": "0.8",
   "package": "dev.codedsakura.blossom.lib.mixin",
   "compatibilityLevel": "JAVA_17",
+  "plugin": "dev.codedsakura.blossom.lib.mixin.MixinConfigPlugin",
   "mixins": [
+    "MC124177Fix"
   ],
   "injectors": {
     "defaultRequire": 1
