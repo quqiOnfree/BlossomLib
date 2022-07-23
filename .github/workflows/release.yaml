@@ -43,6 +43,11 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
+      - name: Download build output
+        uses: actions/download-artifact@v3
+        with:
+          name: changelog
+
       - name: Publish to GitHub Packages
         uses: gradle/gradle-build-action@v2
         with:
@@ -51,6 +56,8 @@ jobs:
         env:
           USERNAME: ${{ github.actor }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          CHANGELOG_PATH: "./changelog.out.md"
 
       - name: Upload build output (libs)
         uses: actions/upload-artifact@v3

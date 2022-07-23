@@ -1,3 +1,7 @@
+# 2.3.1
+
+* Add Modrinth to CI
+
 # 2.3.0
 
 * Add MC-124177 fix
