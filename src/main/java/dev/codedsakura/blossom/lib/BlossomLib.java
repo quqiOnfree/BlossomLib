@@ -217,10 +217,7 @@ public class BlossomLib implements ModInitializer {
                     .requires(
                             Permissions.require("blossom.tpcancel", true))
                     .executes(ctx -> {
-                        ServerPlayerEntity player = ctx.getSource().getPlayer();
-                        if (player == null) {
-                            throw ServerCommandSource.REQUIRES_PLAYER_EXCEPTION.create();
-                        }
+                        ServerPlayerEntity player = ctx.getSource().getPlayerOrThrow();
 
                         if (TeleportUtils.hasCountdowns(player.getUuid())) {
                             TeleportUtils.cancelCountdowns(player.getUuid());

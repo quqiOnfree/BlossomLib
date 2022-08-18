@@ -13,8 +13,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerPlayerEntity.class)
 public class MC124177Fix {
     @Inject(method = "setWorld", at = @At("TAIL"))
-    void teleportFix(ServerWorld world, CallbackInfo ci) {
+    void BlossomLib$teleportFix(ServerWorld world, CallbackInfo ci) {
         ServerPlayerEntity self = (ServerPlayerEntity) (Object) this;
+
+        if (self.networkHandler == null) {
+            return;
+        }
 
         for (StatusEffectInstance statusEffectInstance : self.getStatusEffects())
             self.networkHandler.sendPacket(new EntityStatusEffectS2CPacket(self.getId(), statusEffectInstance));

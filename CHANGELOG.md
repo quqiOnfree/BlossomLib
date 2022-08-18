@@ -1,3 +1,8 @@
+# 2.3.2
+
+* Prevent MC124177Fix from causing "Invalid player data"
+* Update CI
+
 # 2.3.1
 
 * Add Modrinth to CI
