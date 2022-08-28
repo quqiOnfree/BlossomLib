@@ -1,3 +1,7 @@
+# 2.3.3
+
+* Add Chinese translations (Simplified & Traditional), courtesy of @BackWheel
+
 # 2.3.2
 
 * Prevent MC124177Fix from causing "Invalid player data"
