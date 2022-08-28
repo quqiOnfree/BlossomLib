@@ -24,6 +24,8 @@ public class TeleportConfig {
 
     public boolean allowBack = true;
 
+    public boolean cancelOnMove = false;
+
 
     public enum ParticleAnimation {
         OFF

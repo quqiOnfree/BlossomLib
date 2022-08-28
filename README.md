@@ -49,6 +49,7 @@ for the file output
 `actionBarMessageEnabled`: boolean - whether to show a message in the action bar when counting down  
 `fovEffectBefore`: [CubicBezierCurve](#cubicbeziercurve) - FOV animation before the teleportation  
 `fovEffectAfter`: [CubicBezierCurve](#cubicbeziercurve) - FOV animation after the teleportation  
+`cancelOnMove`: boolean - whether to cancel the countdown if the player moves  
 ~~`particleAnimation`: [ParticleAnimation]() - which particle animation to use~~
 
 ### BossBar

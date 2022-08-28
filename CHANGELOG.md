@@ -1,3 +1,8 @@
+# 2.4.0
+
+* Add cancelOnMove option to TeleportConfig (#2)
+* Fix BossBar not appearing for countdowns
+
 # 2.3.3
 
 * Add Chinese translations (Simplified & Traditional), courtesy of @BackWheel

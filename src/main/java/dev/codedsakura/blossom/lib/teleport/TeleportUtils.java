@@ -165,6 +165,10 @@ public class TeleportUtils {
                 changeFov();
 
                 if (!isStill()) {
+                    if (config.cancelOnMove) {
+                        remove();
+                        return;
+                    }
                     counter = standTicks;
                     return;
                 }
@@ -197,7 +201,6 @@ public class TeleportUtils {
             this.counter = counter;
             this.endAt = endAt;
             this.player = player;
-            cleanUp();
         }
 
         protected abstract void run();
