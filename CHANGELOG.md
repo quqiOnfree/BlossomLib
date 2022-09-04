@@ -1,3 +1,7 @@
+# 2.4.1
+
+* Fix a StackOverflowError in TextSuperJoiner (BlossomWarps#2)
+
 # 2.4.0
 
 * Add cancelOnMove option to TeleportConfig (#2)

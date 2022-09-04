@@ -27,7 +27,7 @@ public class TextSuperJoiner {
 
     private void accumulator(Text text) {
         if (result == null) {
-            result = prepend
+            result = prepend.copy()
                     .append(text)
                     .append(append);
         } else {
