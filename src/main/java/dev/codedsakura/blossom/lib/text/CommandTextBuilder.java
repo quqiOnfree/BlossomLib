@@ -10,6 +10,7 @@ public class CommandTextBuilder {
     private Text description = null;
     private boolean suggest = true;
     private boolean hoverShowDisplay = true;
+    private String displayKey = "blossom.text.command.display";
 
     public CommandTextBuilder(String command) {
         this.commandDisplay = command;
@@ -66,6 +67,11 @@ public class CommandTextBuilder {
         return this;
     }
 
+    public CommandTextBuilder setDisplayKey(String newKey) {
+        displayKey = newKey;
+        return this;
+    }
+
     private Text getDescription() {
         MutableText command = Text.literal(hoverShowDisplay ? commandDisplay : commandRun)
                 .styled(descriptionStyle -> descriptionStyle.withColor(TextColor.parse(CONFIG.colors.command)));
@@ -85,7 +91,7 @@ public class CommandTextBuilder {
 
     public Text asColoredText() {
         return TextUtils.translation(
-                "blossom.text.command.display",
+                displayKey,
                 commandDisplay
         ).styled(style -> style
                 .withColor(TextColor.parse(CONFIG.colors.command))
