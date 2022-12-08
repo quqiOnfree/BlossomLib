@@ -62,4 +62,14 @@ public class Permissions {
         }
         return source.hasPermissionLevel(level);
     }
+
+    /**
+     * @see me.lucko.fabric.api.permissions.v0.Permissions#check(Entity, String, boolean)
+     */
+    public static boolean check(@NotNull Entity entity, @NotNull String permission, boolean fallback) {
+        if (isFPAPILoaded()) {
+            return PermissionsExecutor.check(entity, permission, fallback);
+        }
+        return fallback;
+    }
 }

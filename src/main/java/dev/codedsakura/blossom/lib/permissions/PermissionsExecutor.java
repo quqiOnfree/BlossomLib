@@ -1,6 +1,7 @@
 package dev.codedsakura.blossom.lib.permissions;
 
 import me.lucko.fabric.api.permissions.v0.Permissions;
+import net.minecraft.entity.Entity;
 import net.minecraft.server.command.ServerCommandSource;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,5 +22,9 @@ class PermissionsExecutor {
 
     static boolean check(@NotNull ServerCommandSource source, @NotNull String permission, int level) {
         return Permissions.check(source, permission, level);
+    }
+
+    static boolean check(@NotNull Entity entity, @NotNull String permission, boolean fallback) {
+        return Permissions.check(entity, permission, fallback);
     }
 }
