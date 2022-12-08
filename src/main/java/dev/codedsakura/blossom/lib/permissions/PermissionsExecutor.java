@@ -27,4 +27,8 @@ class PermissionsExecutor {
     static boolean check(@NotNull Entity entity, @NotNull String permission, boolean fallback) {
         return Permissions.check(entity, permission, fallback);
     }
+
+    static boolean check(@NotNull Entity entity, @NotNull String permission, int level) {
+        return Permissions.check(entity, permission, level);
+    }
 }
