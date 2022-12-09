@@ -93,7 +93,7 @@ public class BlossomLib implements ModInitializer {
                                         return 1;
                                     })))
                     .then(literal("clear-cooldowns")
-                            .requires(Permissions.require("bolssom.lib.base-command.clear.cooldowns", 2))
+                            .requires(Permissions.require("blossom.lib.base-command.clear.cooldowns", 2))
                             .executes(ctx -> {
                                 TeleportUtils.cancelAllCooldowns();
                                 TextUtils.sendOps(ctx, "blossom.clear-cooldowns.all");
