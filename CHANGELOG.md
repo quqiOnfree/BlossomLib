@@ -1,5 +1,7 @@
 # 2.5.0
+
 * Allow checking permissions of Entities (!4)
+* Add display key override to CommandTextBuilder
 
 # 2.4.1
 
