@@ -1,3 +1,6 @@
+# 2.5.0
+* Allow checking permissions of Entities (!4)
+
 # 2.4.1
 
 * Fix a StackOverflowError in TextSuperJoiner (BlossomWarps#2)
