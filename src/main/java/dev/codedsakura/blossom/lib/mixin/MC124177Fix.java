@@ -1,5 +1,6 @@
 package dev.codedsakura.blossom.lib.mixin;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.network.packet.s2c.play.ExperienceBarUpdateS2CPacket;
@@ -9,11 +10,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerPlayerEntity.class)
 public class MC124177Fix {
-    @Inject(method = "setWorld", at = @At("TAIL"))
-    void BlossomLib$teleportFix(ServerWorld world, CallbackInfo ci) {
+    @Inject(method = "moveToWorld", at = @At("TAIL"))
+    void BlossomLib$teleportFix(ServerWorld destination, CallbackInfoReturnable<Entity> cir) {
         ServerPlayerEntity self = (ServerPlayerEntity) (Object) this;
 
         if (self.networkHandler == null) {

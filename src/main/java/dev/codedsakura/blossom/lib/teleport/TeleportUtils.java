@@ -320,7 +320,7 @@ public class TeleportUtils {
         }
 
         public TeleportDestination(PlayerEntity player) {
-            this((ServerWorld) player.world, player.getPos(), player.getYaw(), player.getPitch());
+            this((ServerWorld) player.getWorld(), player.getPos(), player.getYaw(), player.getPitch());
         }
 
         public TeleportDestination(ServerWorld world, double x, double y, double z, float yaw, float pitch) {
