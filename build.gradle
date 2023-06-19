@@ -30,7 +30,7 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand(
                 "version": project.version,
-                "supported_versions": project.supported_mc_versions,
+                "supported_versions": project.supported_mc_versions.split(";").join("\",\""),
                 "mod_id": project.mod_id,
                 "mod_name": project.mod_name,
         )
@@ -79,7 +79,7 @@ modrinth {
     versionType = "release"
     uploadFile = remapJar
     changelog = System.getenv("CHANGELOG_PATH") ? rootProject.file(System.getenv("CHANGELOG_PATH")).text : ""
-    gameVersions = ((String) project.minecraft_version).split("\\|").toList()
+    gameVersions = (project.minecraft_version).split("\\|").toList()
     loaders = ["fabric", "quilt"]
     syncBodyFrom = rootProject.file("README.md").text
 }
