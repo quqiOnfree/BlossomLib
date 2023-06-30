@@ -1,3 +1,7 @@
+# 2.5.1-fix.1
+
+* Fix 1.20 implementation for MC124177Fix
+
 # 2.5.1
 
 * Prevent unnecessary class loading in MixinConfigPlugin ([#5](https://github.com/BlossomMods/BlossomLib/issues/5))
