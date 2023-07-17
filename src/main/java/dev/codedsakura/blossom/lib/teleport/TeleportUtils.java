@@ -48,15 +48,19 @@ public class TeleportUtils {
         CommandBossBar commandBossBar = null;
         int standTicks = (int) (standStillTime * 20);
         if (config.bossBar.enabled) {
-            commandBossBar = server.getBossBarManager().add(
-                    new Identifier(IDENTIFIER + "_" + who.getUuidAsString()),
-                    TextUtils.translation(
-                            "blossom.countdown.boss_bar.name",
-                            Text.literal(Integer.toString(standTicks))
-                                    .styled(style -> style.withColor(TextColor.parse(CONFIG.colors.variable)))
-                    ).styled(style -> style.withColor(TextColor.parse(config.bossBar.textColor)))
-            );
+            Identifier id = new Identifier(IDENTIFIER + "_" + who.getUuidAsString());
+            commandBossBar = Optional.ofNullable(server.getBossBarManager().get(id))
+                    .orElseGet(() -> server.getBossBarManager().add(
+                            id,
+                            TextUtils.translation(
+                                    "blossom.countdown.boss_bar.name",
+                                    Text.literal(Integer.toString(standTicks))
+                                            .styled(style -> style.withColor(TextColor.parse(CONFIG.colors.variable)))
+                            ).styled(style -> style.withColor(TextColor.parse(config.bossBar.textColor)))
+                    ));
+
             commandBossBar.setColor(BossBar.Color.byName(config.bossBar.color));
+            commandBossBar.clearPlayers();
             commandBossBar.addPlayer(who);
         }
         who.networkHandler.sendPacket(new TitleFadeS2CPacket(0, 10, 5));

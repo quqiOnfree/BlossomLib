@@ -1,3 +1,8 @@
+# 2.5.2
+
+* Reuse bossbar if already present ([#BlossomHomes/10](https://github.com/BlossomMods/BlossomHomes/issues/10))
+* Resolve [#BlossomTpa/8](https://github.com/BlossomMods/BlossomTpa/issues/8)
+
 # 2.5.1-fix.1
 
 * Fix 1.20 implementation for MC124177Fix
