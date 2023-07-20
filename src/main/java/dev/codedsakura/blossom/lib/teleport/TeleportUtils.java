@@ -349,7 +349,7 @@ public class TeleportUtils {
         void run(UUID player, TeleportDestination destination, HashMap<UUID, TeleportDestination> lastTeleportMap);
     }
 
-    public void addLastTeleportAddHook(LastTeleportAddHook hook) {
+    public static void addLastTeleportAddHook(LastTeleportAddHook hook) {
         LAST_TELEPORT_ADD_HOOKS.add(hook);
     }
 
