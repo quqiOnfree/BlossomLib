@@ -30,6 +30,7 @@ public class TeleportUtils {
     private static final ArrayList<CounterRunnable> TASKS = new ArrayList<>();
     private static final HashMap<HashablePair<UUID, Class<?>>, Long> COOLDOWNS = new HashMap<>();
     private static final HashMap<UUID, TeleportDestination> LAST_TELEPORT = new HashMap<>();
+    private static final ArrayList<LastTeleportAddHook> LAST_TELEPORT_ADD_HOOKS = new ArrayList<>();
     private static final String IDENTIFIER = "blossom:standstill";
 
     public static void tick() {
@@ -259,7 +260,7 @@ public class TeleportUtils {
         genericCountdown(customConfig, standStillTime, who, () -> {
             final TeleportConfig config = customConfig == null ? BlossomGlobals.CONFIG.baseTeleportation : customConfig.cloneMerge();
             if (config.allowBack) {
-                LAST_TELEPORT.put(who.getUuid(), new TeleportDestination(who));
+                TeleportUtils.addLastTeleport(who.getUuid(), new TeleportDestination(who));
             }
             TeleportDestination where = getWhere.get();
             who.teleport(where.world, where.x, where.y, where.z, where.yaw, where.pitch);
@@ -280,11 +281,6 @@ public class TeleportUtils {
 
     public static void cancelAllCooldowns() {
         COOLDOWNS.clear();
-    }
-
-
-    public static TeleportDestination getLastTeleport(UUID player) {
-        return LAST_TELEPORT.get(player);
     }
 
 
@@ -347,5 +343,26 @@ public class TeleportUtils {
                     ", pitch=" + pitch +
                     '}';
         }
+    }
+
+    public interface LastTeleportAddHook {
+        void run(UUID player, TeleportDestination destination, HashMap<UUID, TeleportDestination> lastTeleportMap);
+    }
+
+    public void addLastTeleportAddHook(LastTeleportAddHook hook) {
+        LAST_TELEPORT_ADD_HOOKS.add(hook);
+    }
+
+    private static void addLastTeleport(UUID player, TeleportDestination destination) {
+        LAST_TELEPORT.put(player, destination);
+        LAST_TELEPORT_ADD_HOOKS.forEach(hook -> hook.run(player, destination, LAST_TELEPORT));
+    }
+
+    public static TeleportDestination getLastTeleport(UUID player) {
+        return LAST_TELEPORT.get(player);
+    }
+
+    public static HashMap<UUID, TeleportDestination> getAllLastTeleports() {
+        return LAST_TELEPORT;
     }
 }

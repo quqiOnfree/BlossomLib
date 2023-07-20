@@ -1,3 +1,7 @@
+# 2.5.3
+
+* Expand TeleportUtils for [BlossomBack#3](https://github.com/BlossomMods/BlossomBack/issues/3)
+
 # 2.5.2
 
 * Reuse bossbar if already present ([#BlossomHomes/10](https://github.com/BlossomMods/BlossomHomes/issues/10))
