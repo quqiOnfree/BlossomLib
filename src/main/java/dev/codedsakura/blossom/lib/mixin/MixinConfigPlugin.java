@@ -13,7 +13,7 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
 
     @Override
     public void onLoad(String mixinPackage) {
-        BlossomGlobals.LOGGER.info("BlossomLib mixins loading...");
+        BlossomGlobals.LOGGER.info("BlossomLib mixins loading");
     }
 
     @Override

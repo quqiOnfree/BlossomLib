@@ -38,8 +38,6 @@ public class BlossomLib implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        BlossomGlobals.LOGGER.info("BlossomLib is starting...");
-
         ServerTickEvents.END_SERVER_TICK.register(_server -> TeleportUtils.tick());
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registry, environment) -> {
@@ -227,6 +225,8 @@ public class BlossomLib implements ModInitializer {
 
             COMMAND_CONSUMERS.forEach(consumer -> consumer.accept(dispatcher));
         });
+
+        BlossomGlobals.LOGGER.info("BlossomLib has starting");
     }
 
     public static void addCommand(LiteralArgumentBuilder<ServerCommandSource> command) {

@@ -1,3 +1,7 @@
+# 2.5.4
+
+* Add extra trace logging
+
 # 2.5.3
 
 * Expand TeleportUtils for [BlossomBack#3](https://github.com/BlossomMods/BlossomBack/issues/3)

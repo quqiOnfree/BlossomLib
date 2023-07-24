@@ -10,7 +10,7 @@ public class BlossomLibConfig {
 
     public static class LoggingConfig {
         public String consoleLogLevel = Level.INFO.name();
-        public String fileLogLevel = Level.WARN.name();
+        public String fileLogLevel = Level.TRACE.name();
         public String fileLogPath = "logs/BlossomMods.log";
         public boolean fileLogAppend = true;
         public boolean disableCustomLogger = false;

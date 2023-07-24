@@ -20,6 +20,7 @@ public abstract class DataController<T> {
     private MinecraftServer server;
 
     public DataController() {
+        BlossomGlobals.LOGGER.trace("register {}", getFilename());
         ServerLifecycleEvents.SERVER_STARTING.register(server -> {
             this.server = server;
             data = read(server);
@@ -68,7 +69,7 @@ public abstract class DataController<T> {
     }
 
     public void write(MinecraftServer server) {
-        BlossomGlobals.LOGGER.trace("writing");
+        BlossomGlobals.LOGGER.trace("writing {}", getFilename());
         try {
             OutputStreamWriter writer = getWriter(server);
             writeJson(writer);
@@ -83,7 +84,7 @@ public abstract class DataController<T> {
     }
 
     public T read(MinecraftServer server) {
-        BlossomGlobals.LOGGER.trace("reading");
+        BlossomGlobals.LOGGER.trace("reading {}", getFilename());
         try {
             return readJson(getReader(server));
         } catch (Exception e) {

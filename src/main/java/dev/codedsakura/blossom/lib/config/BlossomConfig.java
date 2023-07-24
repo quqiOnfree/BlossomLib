@@ -2,6 +2,7 @@ package dev.codedsakura.blossom.lib.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dev.codedsakura.blossom.lib.BlossomGlobals;
 import dev.codedsakura.blossom.lib.utils.CubicBezierCurve;
 import dev.codedsakura.blossom.lib.utils.gson.CubicBezierCurveSerializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -9,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Optional;
 
 public class BlossomConfig {
     private static final Gson GSON = new GsonBuilder()
@@ -23,6 +25,9 @@ public class BlossomConfig {
     }
 
     public static <T> @NotNull T load(Class<T> clazz, String filename) {
+        Optional.ofNullable(BlossomGlobals.LOGGER)
+                .ifPresent(l -> l.trace("loading config {}", filename));
+
         var file = getFile(filename);
         T config = null;
 
@@ -53,6 +58,9 @@ public class BlossomConfig {
     }
 
     public static <T> void save(T config, String filename) {
+        Optional.ofNullable(BlossomGlobals.LOGGER)
+                .ifPresent(l -> l.trace("saving config {}", filename));
+
         File file = getFile(filename);
         if (!file.getParentFile().exists()) {
             if (!file.getParentFile().mkdir()) {
