@@ -1,3 +1,8 @@
+# 2.5.5
+
+* Update to 1.20.2
+* Bump server translation api
+
 # 2.5.4
 
 * Add extra trace logging
