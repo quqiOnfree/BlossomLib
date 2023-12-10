@@ -1,6 +1,9 @@
 package dev.codedsakura.blossom.lib.text;
 
-import net.minecraft.text.*;
+import net.minecraft.text.ClickEvent;
+import net.minecraft.text.HoverEvent;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 import static dev.codedsakura.blossom.lib.BlossomGlobals.CONFIG;
 
@@ -74,7 +77,7 @@ public class CommandTextBuilder {
 
     private Text getDescription() {
         MutableText command = Text.literal(hoverShowDisplay ? commandDisplay : commandRun)
-                .styled(descriptionStyle -> descriptionStyle.withColor(TextColor.parse(CONFIG.colors.command)));
+                .styled(descriptionStyle -> descriptionStyle.withColor(TextUtils.parseColor(CONFIG.colors.command)));
         if (description == null) {
             return TextUtils.translation(
                     "blossom.text.command.plain",
@@ -85,7 +88,7 @@ public class CommandTextBuilder {
                 "blossom.text.command.description",
                 command,
                 description.copy()
-                        .styled(descriptionStyle -> descriptionStyle.withColor(TextColor.parse(CONFIG.colors.commandDescription)))
+                        .styled(descriptionStyle -> descriptionStyle.withColor(TextUtils.parseColor(CONFIG.colors.commandDescription)))
         );
     }
 
@@ -94,7 +97,7 @@ public class CommandTextBuilder {
                 displayKey,
                 commandDisplay
         ).styled(style -> style
-                .withColor(TextColor.parse(CONFIG.colors.command))
+                .withColor(TextUtils.parseColor(CONFIG.colors.command))
                 .withHoverEvent(new HoverEvent(
                         HoverEvent.Action.SHOW_TEXT,
                         this.getDescription()

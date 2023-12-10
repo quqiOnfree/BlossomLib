@@ -14,7 +14,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
@@ -56,8 +55,8 @@ public class TeleportUtils {
                             TextUtils.translation(
                                     "blossom.countdown.boss_bar.name",
                                     Text.literal(Integer.toString(standTicks))
-                                            .styled(style -> style.withColor(TextColor.parse(CONFIG.colors.variable)))
-                            ).styled(style -> style.withColor(TextColor.parse(config.bossBar.textColor)))
+                                            .styled(style -> style.withColor(TextUtils.parseColor(CONFIG.colors.variable)))
+                            ).styled(style -> style.withColor(TextUtils.parseColor(config.bossBar.textColor)))
                     ));
 
             commandBossBar.setColor(BossBar.Color.byName(config.bossBar.color));
@@ -143,8 +142,8 @@ public class TeleportUtils {
                             TextUtils.translation(
                                     "blossom.countdown.boss_bar.name",
                                     Text.literal(Integer.toString(remaining))
-                                            .styled(style -> style.withColor(TextColor.parse(CONFIG.colors.variable)))
-                            ).styled(style -> style.withColor(TextColor.parse(config.bossBar.textColor)))
+                                            .styled(style -> style.withColor(TextUtils.parseColor(CONFIG.colors.variable)))
+                            ).styled(style -> style.withColor(TextUtils.parseColor(config.bossBar.textColor)))
                     );
                 }
                 if (config.actionBarMessageEnabled) {

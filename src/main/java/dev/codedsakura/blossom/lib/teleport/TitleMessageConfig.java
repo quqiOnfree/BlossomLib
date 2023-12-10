@@ -4,7 +4,6 @@ import dev.codedsakura.blossom.lib.text.TextUtils;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
 
 public class TitleMessageConfig {
     public boolean enabled = true;
@@ -25,7 +24,7 @@ public class TitleMessageConfig {
 
         public Style getStyle(Style style) {
             return style
-                    .withColor(TextColor.parse(color))
+                    .withColor(TextUtils.parseColor(color))
                     .withBold(modifiers.indexOf('b') >= 0)
                     .withItalic(modifiers.indexOf('i') >= 0)
                     .withUnderline(modifiers.indexOf('u') >= 0)
@@ -50,7 +49,7 @@ public class TitleMessageConfig {
             return TextUtils.translation(
                     key,
                     Text.literal(Integer.toString(counter))
-                            .styled(style -> style.withColor(TextColor.parse(counterColor)))
+                            .styled(style -> style.withColor(TextUtils.parseColor(counterColor)))
             ).styled(this::getStyle);
         }
     }

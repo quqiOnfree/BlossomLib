@@ -14,7 +14,7 @@ import static dev.codedsakura.blossom.lib.BlossomGlobals.CONFIG;
 public class TextUtils {
     public static MutableText variable(String str) {
         return Text.literal(str)
-                .styled(style -> style.withColor(TextColor.parse(CONFIG.colors.variable)));
+                .styled(style -> style.withColor(TextUtils.parseColor(CONFIG.colors.variable)));
     }
 
     public static MutableText variable(int var) {
@@ -49,7 +49,7 @@ public class TextUtils {
         return player.getDisplayName().copy()
                 .styled(style -> {
                     if (style.getColor() == null) {
-                        return style.withColor(TextColor.parse(CONFIG.colors.player));
+                        return style.withColor(TextUtils.parseColor(CONFIG.colors.player));
                     }
                     return style;
                 });
@@ -63,11 +63,18 @@ public class TextUtils {
                 key,
                 Arrays.stream(args).map(TextUtils::variable).toArray()
         ).styled(style -> switch (t) {
-            case ERROR -> style.withColor(TextColor.parse(CONFIG.colors.error));
-            case WARN -> style.withColor(TextColor.parse(CONFIG.colors.warn));
-            case INFO -> style.withColor(TextColor.parse(CONFIG.colors.base));
-            case SUCCESS -> style.withColor(TextColor.parse(CONFIG.colors.success));
+            case ERROR -> style.withColor(TextUtils.parseColor(CONFIG.colors.error));
+            case WARN -> style.withColor(TextUtils.parseColor(CONFIG.colors.warn));
+            case INFO -> style.withColor(TextUtils.parseColor(CONFIG.colors.base));
+            case SUCCESS -> style.withColor(TextUtils.parseColor(CONFIG.colors.success));
         });
+    }
+
+    public static TextColor parseColor(String color) {
+        return TextColor.parse(color)
+                .getOrThrow(false, e -> {
+                    throw new RuntimeException(e);
+                });
     }
 
     public static MutableText translation(String key, Object... args) {

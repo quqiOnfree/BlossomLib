@@ -1,3 +1,9 @@
+# 2.5.6
+
+* Update to 1.20.4
+* Bump gradle-wrapper version
+* Bump dependency versions
+
 # 2.5.5
 
 * Update to 1.20.2
