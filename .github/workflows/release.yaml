@@ -53,7 +53,7 @@ jobs:
           USERNAME: ${{ github.actor }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CS_USERNAME: "codedsakura"
-          CS_TOKE: ${{ secrets.CODEDSAKURA_MAVEN_TOKEN }}
+          CS_TOKEN: ${{ secrets.CODEDSAKURA_MAVEN_TOKEN }}
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           CHANGELOG_PATH: "./changelog.out.md"
 
