@@ -1,6 +1,10 @@
-# 2.6.0
+# 2.5.7
 
 * Update to 1.20.6
+* Bump gradle-wrapper version
+* Bump dependency versions
+* Bump loom version
+* Add publishing to alternate repository (<https://maven.codedsakura.dev>)
 
 # 2.5.6
 
