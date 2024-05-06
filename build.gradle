@@ -74,8 +74,8 @@ publishing {
             name = "codedsakuraMavenReleases"
             url = uri("https://maven.codedsakura.dev/releases")
             credentials {
-                username = System.getenv("CS-USERNAME")
-                password = System.getenv("CS-TOKEN")
+                username = System.getenv("CS_USERNAME")
+                password = System.getenv("CS_TOKEN")
             }
         }
     }
