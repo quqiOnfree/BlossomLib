@@ -31,6 +31,6 @@ public class DimName {
     }
 
     public static String get(String dimensionIdentifier) {
-        return get(new Identifier(dimensionIdentifier));
+        return get(Identifier.of(dimensionIdentifier));
     }
 }

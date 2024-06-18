@@ -48,7 +48,7 @@ public class TeleportUtils {
         CommandBossBar commandBossBar = null;
         int standTicks = (int) (standStillTime * 20);
         if (config.bossBar.enabled) {
-            Identifier id = new Identifier(IDENTIFIER + "_" + who.getUuidAsString());
+            Identifier id = Identifier.of(IDENTIFIER + "_" + who.getUuidAsString());
             commandBossBar = Optional.ofNullable(server.getBossBarManager().get(id))
                     .orElseGet(() -> server.getBossBarManager().add(
                             id,
