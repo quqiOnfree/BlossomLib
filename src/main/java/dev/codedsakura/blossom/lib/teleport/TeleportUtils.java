@@ -262,7 +262,7 @@ public class TeleportUtils {
                 TeleportUtils.addLastTeleport(who.getUuid(), new TeleportDestination(who));
             }
             TeleportDestination where = getWhere.get();
-            who.teleport(where.world, where.x, where.y, where.z, where.yaw, where.pitch);
+            who.teleport(where.world, where.x, where.y, where.z, Set.of(), where.yaw, where.pitch, false);
             COOLDOWNS.put(pair, new Date().getTime() / 1000 + cooldownTime);
         });
         return true;

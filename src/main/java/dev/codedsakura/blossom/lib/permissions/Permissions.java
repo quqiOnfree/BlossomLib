@@ -3,6 +3,8 @@ package dev.codedsakura.blossom.lib.permissions;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Predicate;
@@ -80,6 +82,7 @@ public class Permissions {
         if (isFPAPILoaded()) {
             return PermissionsExecutor.check(entity, permission, level);
         }
-        return entity.hasPermissionLevel(level);
+        World world = entity.getWorld();
+        return entity.getCommandSource(world instanceof ServerWorld ? (ServerWorld)world : null).hasPermissionLevel(level);
     }
 }

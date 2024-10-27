@@ -150,7 +150,7 @@ public class BlossomLib implements ModInitializer {
                                                     .then(argument("rot", RotationArgumentType.rotation())
                                                             .executes(ctx -> {
                                                                 Vec2f rot = RotationArgumentType.getRotation(ctx, "rot")
-                                                                        .toAbsoluteRotation(ctx.getSource());
+                                                                        .getRotation(ctx.getSource());
                                                                 int standStill = IntegerArgumentType.getInteger(ctx, "standStill");
                                                                 TextUtils.send(ctx, "blossom.debug.teleport.no-cooldown", standStill);
                                                                 return TeleportUtils.teleport(
@@ -169,7 +169,7 @@ public class BlossomLib implements ModInitializer {
                                                             .then(argument("rot", RotationArgumentType.rotation())
                                                                     .executes(ctx -> {
                                                                         Vec2f rot = RotationArgumentType.getRotation(ctx, "rot")
-                                                                                .toAbsoluteRotation(ctx.getSource());
+                                                                                .getRotation(ctx.getSource());
                                                                         int standStill = IntegerArgumentType.getInteger(ctx, "standStill");
                                                                         int cooldown = IntegerArgumentType.getInteger(ctx, "cooldown");
                                                                         ServerPlayerEntity player = ctx.getSource().getPlayer();
