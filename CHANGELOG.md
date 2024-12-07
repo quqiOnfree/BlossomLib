@@ -1,3 +1,7 @@
+# 2.5.11
+
+* Update to support 1.21.3
+
 # 2.5.10
 
 * Update to support 1.21.3

@@ -134,4 +134,7 @@ only keys with available arguments are shown, for full list, please see
 - `blossom.text.command.plain`: 1 argument - display text/command run
 - `blossom.text.command.description`: 2 arguments - display text/command run, description
 
-`zh_cn` (Chinese, Simplified), `zh_tw` (Chinese, Traditional) - added by @BackWheel
+`zh_cn` (Chinese, Simplified), `zh_tw` (Chinese, Traditional) - added by @BackWheel  
+`ko_kr` (Korean) - added by @biryeongtrain  
+`es_mx` (Spanish, Mexico) - added by @FabrizioCoder  
+`fr_fr` (French) - added by @WalTho
