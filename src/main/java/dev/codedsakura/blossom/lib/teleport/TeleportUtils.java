@@ -59,7 +59,7 @@ public class TeleportUtils {
                             ).styled(style -> style.withColor(TextUtils.parseColor(config.bossBar.textColor)))
                     ));
 
-            commandBossBar.setColor(BossBar.Color.byName(config.bossBar.color));
+            commandBossBar.setColor(BossBar.Color.valueOf(config.bossBar.color));
             commandBossBar.clearPlayers();
             commandBossBar.addPlayer(who);
         }

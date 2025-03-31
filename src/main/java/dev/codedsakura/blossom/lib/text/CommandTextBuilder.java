@@ -98,13 +98,11 @@ public class CommandTextBuilder {
                 commandDisplay
         ).styled(style -> style
                 .withColor(TextUtils.parseColor(CONFIG.colors.command))
-                .withHoverEvent(new HoverEvent(
-                        HoverEvent.Action.SHOW_TEXT,
+                .withHoverEvent(new HoverEvent.ShowText(
                         this.getDescription()
                 ))
-                .withClickEvent(new ClickEvent(
-                        suggest ? ClickEvent.Action.SUGGEST_COMMAND : ClickEvent.Action.RUN_COMMAND,
-                        commandRun
-                )));
+                .withClickEvent(suggest ?
+                        new ClickEvent.SuggestCommand(commandRun) :
+                        new ClickEvent.RunCommand(commandRun)));
     }
 }
