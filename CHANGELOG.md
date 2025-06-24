@@ -1,3 +1,7 @@
+# 2.5.14
+
+* Update to support 1.21.6
+
 # 2.5.13
 
 * Fix issue with genericCountdown failing 
